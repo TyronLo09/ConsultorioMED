@@ -207,6 +207,16 @@
                 <a asp-controller="DetalleFacturas" asp-action="Index">Detalle de Facturas</a>
             </div>
 
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuUsuarios" role="button" aria-expanded="false" aria-controls="menuUsuarios">
+                <span class="menu-icon">👤</span>
+                Usuarios
+            </a>
+            <div class="collapse submenu" id="menuUsuarios">
+                <a asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                <a asp-controller="RolUsuarios" asp-action="Index">Rol Usuarios </a>
+                
+            </div>
+
             <hr />
 
             <a asp-controller="Home" asp-action="Privacy">

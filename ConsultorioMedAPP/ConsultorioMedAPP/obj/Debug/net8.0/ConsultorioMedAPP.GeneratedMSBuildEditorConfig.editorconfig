@@ -234,6 +234,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Pacientes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFjaWVudGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -272,6 +276,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Personas/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVyc29uYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/RolUsuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/RolUsuarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/RolUsuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/RolUsuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/RolUsuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9sVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Seguroes/Create.cshtml]
@@ -440,6 +464,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Turnoes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVHVybm9lc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Usuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Usuarios/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Usuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Usuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Usuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Tryro/Documents/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/_ViewImports.cshtml]
