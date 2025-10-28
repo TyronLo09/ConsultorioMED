@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VxChyKaSFkY=",
+  "dgSpecHash": "Qomx8uNNYeg=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
+  "projectFilePath": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tryro\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Tryro\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

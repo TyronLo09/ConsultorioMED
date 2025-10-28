@@ -7758,11 +7758,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
+      "projectUniqueName": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
       "projectName": "ConsultorioMedAPP",
-      "projectPath": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
+      "projectPath": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\ConsultorioMedAPP.csproj",
       "packagesPath": "C:\\Users\\Tryro\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\obj\\",
+      "outputPath": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tryro\\AppData\\Roaming\\NuGet\\NuGet.Config",
