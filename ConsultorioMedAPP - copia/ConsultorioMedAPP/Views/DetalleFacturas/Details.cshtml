@@ -1,0 +1,48 @@
+﻿@model ConsultorioMedAPP.Models.DetalleFactura
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DetalleFactura</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Subtotal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Subtotal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FacturaIdFacturaNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FacturaIdFacturaNavigation.IdFactura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCitaCitaNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCitaCitaNavigation.IdCita)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdDetalleFactura">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

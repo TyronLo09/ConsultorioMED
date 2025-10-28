@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ConsultorioMedAPP.Models.Persona>
+
+@{
+    ViewData["Title"] = "Personas";
+}
+
+<h2 class="text-center mb-4">Listado de Personas</h2>
+
+<p class="text-end mb-3">
+    <a asp-action="Create" class="btn btn-primary">Agregar Nueva Persona</a>
+</p>
+
+<table class="table table-hover table-striped shadow-sm align-middle rounded">
+    <thead class="table-dark text-center">
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Primer Apellido</th>
+            <th>Segundo Apellido</th>
+            <th>Fecha Nacimiento</th>
+            <th>Fecha Creación</th>
+            <th>Activo</th>
+            <th>Correos</th>
+            <th>Teléfonos</th>
+            <th>Género</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">@item.IdCedula</td>
+                <td>@item.Nombre</td>
+                <td>@item.Apellido1</td>
+                <td>@item.Apellido2</td>
+                <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td>@item.FechaCreacion?.ToString("dd/MM/yyyy HH:mm")</td>
+
+                <td class="text-center">
+                    @if (item.Activo == true)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger">Inactivo</span>
+                    }
+                </td>
+
+                <td>
+                    @if (item.Correos != null && item.Correos.Any())
+                    {
+                        @foreach (var correo in item.Correos)
+                        {
+                            <div>@correo.DirecCorreo</div>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">—</span>
+                    }
+                </td>
+
+                <td>
+                    @if (item.Telefonos != null && item.Telefonos.Any())
+                    {
+                        @foreach (var tel in item.Telefonos)
+                        {
+                            <div>@tel.Numero</div>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">—</span>
+                    }
+                </td>
+
+                <!-- Aquí cambiamos el IdGenero por la descripción -->
+                <td class="text-center">
+                    @(item.IdGeneroNavigation?.Descripcion ?? "Sin género")
+                </td>
+
+                <td class="text-center">
+                    <a asp-action="Edit" asp-route-id="@item.IdCedula" class="btn btn-sm btn-warning me-1">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdCedula" class="btn btn-sm btn-info me-1">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdCedula" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

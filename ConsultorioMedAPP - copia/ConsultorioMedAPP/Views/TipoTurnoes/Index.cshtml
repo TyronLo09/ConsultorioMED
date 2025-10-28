@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ConsultorioMedAPP.Models.TipoTurno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSalida)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraEntrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoraSalida)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdTipoTurno">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdTipoTurno">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdTipoTurno">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

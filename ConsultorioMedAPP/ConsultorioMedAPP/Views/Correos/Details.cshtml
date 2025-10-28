@@ -1,0 +1,42 @@
+﻿@model ConsultorioMedAPP.Models.Correo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Correo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DirecCorreo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DirecCorreo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCedulaNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCedulaNavigation.IdCedula)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdTipoCorreoNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdTipoCorreoNavigation.IdTipoCorreo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdCorreo">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

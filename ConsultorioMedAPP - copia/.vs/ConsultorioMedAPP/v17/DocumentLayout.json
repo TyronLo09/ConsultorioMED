@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\source\\repos\\consultoriomedapp\\consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\source\\repos\\consultoriomedapp\\consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\source\\repos\\consultoriomedapp\\consultoriomedapp\\controllers\\citumscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\citumscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\source\\repos\\consultoriomedapp\\consultoriomedapp\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\facturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\source\\repos\\consultoriomedapp\\consultoriomedapp\\controllers\\detallefacturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\detallefacturascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PersonasController.cs",
+              "DocumentMoniker": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\PersonasController.cs",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\PersonasController.cs",
+              "ToolTip": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\PersonasController.cs",
+              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\PersonasController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T00:56:00.07Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DetalleFacturasController.cs",
+              "DocumentMoniker": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\DetalleFacturasController.cs",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\DetalleFacturasController.cs",
+              "ToolTip": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\DetalleFacturasController.cs",
+              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\DetalleFacturasController.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T23:54:57.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CitumsController.cs",
+              "DocumentMoniker": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\CitumsController.cs",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\CitumsController.cs",
+              "ToolTip": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\CitumsController.cs",
+              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\CitumsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T23:21:26.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAAAI8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-24T21:31:51.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FacturasController.cs",
+              "DocumentMoniker": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\FacturasController.cs",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\FacturasController.cs",
+              "ToolTip": "C:\\Users\\Tryro\\source\\repos\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\FacturasController.cs",
+              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\FacturasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-25T23:55:38.42Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
