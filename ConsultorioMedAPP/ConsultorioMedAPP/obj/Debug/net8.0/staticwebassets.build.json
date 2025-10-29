@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tSfmwUXYf2K2AfbzvfRRT5yF65++Or0jJXwMXlT2Sao=",
+  "Hash": "tJOIUK3Y0NMC/M4FeBvi2qPIKvtGIQCY+Rs3wTojanM=",
   "Source": "ConsultorioMedAPP",
   "BasePath": "_content/ConsultorioMedAPP",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\wwwroot\\logo.png",
+      "SourceId": "ConsultorioMedAPP",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\wwwroot\\",
+      "BasePath": "_content/ConsultorioMedAPP",
+      "RelativePath": "logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\logo.png"
     }
   ]
 }

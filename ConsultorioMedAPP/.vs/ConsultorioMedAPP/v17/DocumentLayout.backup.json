@@ -34,8 +34,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Program.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAAUwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T18:49:04.993Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T18:49:04.993Z"
             },
             {
               "$type": "Document",
@@ -55,9 +54,9 @@
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAOAAAAAAAAAAAAAAAPkAAAAHAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml*",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml*",
+              "ViewState": "AgIAANAAAAAAAAAAAAAAwPIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-10-24T21:31:51.575Z",
               "EditorCaption": ""

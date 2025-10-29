@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ConsultorioMedAPP.styles.css" asp-append-version="true" />
+
     <style>
         body {
             display: flex;
@@ -29,9 +30,12 @@
 
         .sidebar-header {
             background-color: rgba(255,255,255,0.15);
-            padding: 20px;
+            padding: 15px 10px;
             text-align: center;
             border-bottom: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .navbar-brand {
@@ -39,13 +43,21 @@
             color: #fff !important;
             font-size: 1.3rem;
             text-decoration: none;
-            display: block;
             margin: 0;
         }
 
             .navbar-brand:hover {
                 color: #fff !important;
             }
+
+        /* Logo */
+        .logo-img {
+            width: 50px;
+            height: auto;
+            border-radius: 10px;
+            background-color: white;
+            padding: 3px;
+        }
 
         .sidebar-menu {
             padding: 15px 0;
@@ -112,13 +124,9 @@
             margin-top: 40px;
         }
 
-        /* Scrollbar personalizado */
+        /* Scrollbar */
         .sidebar::-webkit-scrollbar {
             width: 6px;
-        }
-
-        .sidebar::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.1);
         }
 
         .sidebar::-webkit-scrollbar-thumb {
@@ -126,35 +134,30 @@
             border-radius: 3px;
         }
 
-            .sidebar::-webkit-scrollbar-thumb:hover {
-                background: rgba(255,255,255,0.5);
-            }
-
         hr {
             border-color: rgba(255,255,255,0.2);
             margin: 10px 20px;
         }
     </style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="sidebar-header">
             <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                
                 DUNAMYS S.A.
             </a>
+            <img src="~/logo.png" alt="Logo" class="logo-img" />
         </div>
 
         <div class="sidebar-menu">
             <a asp-controller="Home" asp-action="Index">
-                <span class="menu-icon">🏠</span>
-                Inicio
+                <span class="menu-icon">🏠</span> Inicio
             </a>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuPersonas" role="button" aria-expanded="false" aria-controls="menuPersonas">
-                <span class="menu-icon">👤</span>
-                Personal
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuPersonas">
+                <span class="menu-icon">👤</span> Personal
             </a>
             <div class="collapse submenu" id="menuPersonas">
                 <a asp-controller="Personas" asp-action="Index">Personas</a>
@@ -165,9 +168,8 @@
                 <a asp-controller="TipoTelefonoes" asp-action="Index">Tipo de Teléfonos</a>
             </div>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuPacientes" role="button" aria-expanded="false" aria-controls="menuPacientes">
-                <span class="menu-icon">🩺</span>
-                Clientes
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuPacientes">
+                <span class="menu-icon">🩺</span> Clientes
             </a>
             <div class="collapse submenu" id="menuPacientes">
                 <a asp-controller="Pacientes" asp-action="Index">Pacientes</a>
@@ -177,9 +179,8 @@
                 <a asp-controller="AntecedentesMedicoes" asp-action="Index">Antecedentes Médicos</a>
             </div>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuDoctores" role="button" aria-expanded="false" aria-controls="menuDoctores">
-                <span class="menu-icon">👨‍⚕️</span>
-                Doctores
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuDoctores">
+                <span class="menu-icon">👨‍⚕️</span> Doctores
             </a>
             <div class="collapse submenu" id="menuDoctores">
                 <a asp-controller="Doctors" asp-action="Index">Doctores</a>
@@ -189,44 +190,38 @@
                 <a asp-controller="TipoTurnoes" asp-action="Index">Tipo de Turnos</a>
             </div>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuCitas" role="button" aria-expanded="false" aria-controls="menuCitas">
-                <span class="menu-icon">📅</span>
-                Citas
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuCitas">
+                <span class="menu-icon">📅</span> Citas
             </a>
             <div class="collapse submenu" id="menuCitas">
                 <a asp-controller="Citums" asp-action="Index">Gestión de Citas</a>
                 <a asp-controller="EstadoCitums" asp-action="Index">Estado de la Cita</a>
             </div>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuFactura" role="button" aria-expanded="false" aria-controls="menuFactura">
-                <span class="menu-icon">💰</span>
-                Finanzas
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuFactura">
+                <span class="menu-icon">💰</span> Finanzas
             </a>
             <div class="collapse submenu" id="menuFactura">
                 <a asp-controller="Facturas" asp-action="Index">Facturas</a>
                 <a asp-controller="DetalleFacturas" asp-action="Index">Detalle de Facturas</a>
             </div>
 
-            <a class="menu-category" data-bs-toggle="collapse" href="#menuUsuarios" role="button" aria-expanded="false" aria-controls="menuUsuarios">
-                <span class="menu-icon">👤</span>
-                Usuarios
+            <a class="menu-category" data-bs-toggle="collapse" href="#menuUsuarios">
+                <span class="menu-icon">👥</span> Usuarios
             </a>
             <div class="collapse submenu" id="menuUsuarios">
                 <a asp-controller="Usuarios" asp-action="Index">Usuarios</a>
-                <a asp-controller="RolUsuarios" asp-action="Index">Rol Usuarios </a>
-                
+                <a asp-controller="RolUsuarios" asp-action="Index">Rol Usuarios</a>
             </div>
 
             <hr />
 
             <a asp-controller="Home" asp-action="Privacy">
-                <span class="menu-icon">📊</span>
-                Inventario
+                <span class="menu-icon">📊</span> Inventario
             </a>
 
             <a asp-controller="Home" asp-action="Privacy">
-                <span class="menu-icon">🔒</span>
-                Privacidad
+                <span class="menu-icon">🔒</span> Privacidad
             </a>
         </div>
     </div>
@@ -236,10 +231,7 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-
-        <footer class="border-top footer text-muted">
-           
-        </footer>
+        <footer class="border-top footer text-muted"></footer>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
