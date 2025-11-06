@@ -1,60 +1,56 @@
 ﻿@model ConsultorioMedAPP.Models.Persona
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles de Persona";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
-<div>
-    <h4>Persona</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido1)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido1)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Apellido2)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Apellido2)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaNacimiento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaCreacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaCreacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdGeneroNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdGeneroNavigation.IdGenero)
-        </dd>
-    </dl>
+<div class="card mb-3">
+    <div class="card-header">
+        <strong>Cédula:</strong> @ViewBag.FormattedCedula
+    </div>
+    <div class="card-body">
+        <p><strong>Nombre:</strong> @Model.Nombre @Model.Apellido1 @Model.Apellido2</p>
+        <p><strong>Fecha nacimiento:</strong> @Model.FechaNacimiento.ToString("dd/MM/yyyy")</p>
+        <p><strong>Género:</strong> @(Model.IdGeneroNavigation?.Descripcion ?? "Sin género")</p>
+        <p><strong>Activo:</strong> @(Model.Activo == true ? "Sí" : "No")</p>
+
+        <hr />
+
+        <h5>Correos</h5>
+        @if (Model.Correos != null && Model.Correos.Any())
+        {
+            <ul>
+                @foreach (var c in Model.Correos)
+                {
+                    <li>@c.DirecCorreo (@c.IdTipoCorreoNavigation?.Descripcion)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">—</p>
+        }
+
+        <h5>Teléfonos</h5>
+        @if (Model.Telefonos != null && Model.Telefonos.Any())
+        {
+            <ul>
+                @foreach (var t in Model.Telefonos)
+                {
+                    <li>@t.Numero (@t.IdTipoTelefonoNavigation?.Descripcion)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-muted">—</p>
+        }
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdCedula">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.IdCedula" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</p>

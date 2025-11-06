@@ -17,22 +17,22 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Sidebar */
+        /* Sidebar (mismo color que el botón Crear Nueva Persona) */
         .sidebar {
             width: 250px;
-            background: linear-gradient(180deg, #3dd5c8 0%, #2ab3a8 100%);
+            background-color: #198754; /* color igual al botón */
             padding-top: 0;
             position: fixed;
             height: 100%;
-            box-shadow: 3px 0 15px rgba(0,0,0,0.1);
+            box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
         }
 
         .sidebar-header {
-            background-color: rgba(255,255,255,0.15);
+            background-color: rgba(255, 255, 255, 0.15);
             padding: 15px 10px;
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,14 +40,14 @@
 
         .navbar-brand {
             font-weight: 700;
-            color: #fff !important;
+            color: #004aad !important; /* azul */
             font-size: 1.3rem;
             text-decoration: none;
             margin: 0;
         }
 
             .navbar-brand:hover {
-                color: #fff !important;
+                color: #002f6c !important; /* azul más oscuro al pasar el mouse */
             }
 
         /* Logo */
@@ -63,41 +63,45 @@
             padding: 15px 0;
         }
 
+        /* Enlaces del menú lateral */
         .sidebar a {
             display: flex;
             align-items: center;
-            color: #fff;
+            color: #004aad; /* texto azul */
             padding: 12px 20px;
             text-decoration: none;
             transition: all 0.3s;
             font-size: 0.95rem;
             border-left: 3px solid transparent;
+            font-weight: 600;
         }
 
             .sidebar a:hover {
-                background-color: rgba(255,255,255,0.15);
-                border-left-color: #fff;
+                background-color: rgba(255, 255, 255, 0.3);
+                border-left-color: #004aad; /* azul al pasar */
                 padding-left: 25px;
+                color: #002f6c; /* azul más oscuro */
             }
 
             .sidebar a.menu-category {
-                font-weight: 600;
-                cursor: pointer;
+                font-weight: 700;
             }
 
         .sidebar .submenu {
-            background-color: rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.2);
             padding-left: 0;
         }
 
             .sidebar .submenu a {
                 padding-left: 45px;
                 font-size: 0.9rem;
-                font-weight: 400;
+                font-weight: 500;
+                color: #004aad; /* también azul */
             }
 
                 .sidebar .submenu a:hover {
                     padding-left: 50px;
+                    color: #002f6c;
                 }
 
         .menu-icon {
@@ -130,15 +134,16 @@
         }
 
         .sidebar::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
+            background: rgba(0, 0, 0, 0.2);
             border-radius: 3px;
         }
 
         hr {
-            border-color: rgba(255,255,255,0.2);
+            border-color: rgba(255, 255, 255, 0.4);
             margin: 10px 20px;
         }
     </style>
+
 </head>
 
 <body>

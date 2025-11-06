@@ -1,57 +1,101 @@
 ﻿@model ConsultorioMedAPP.Models.Persona
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear persona";
 }
 
-<h1>Create</h1>
+<h2 class="text-center mb-4">Registrar nueva persona</h2>
 
-<h4>Persona</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdCedula" class="control-label"></label>
-                <input asp-for="IdCedula" class="form-control" />
+<div class="container mt-4">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label asp-for="IdCedula" class="form-label">Cédula</label>
+                <input asp-for="IdCedula" class="form-control" maxlength="9" pattern="\d{9}" title="Debe contener 9 dígitos" required />
                 <span asp-validation-for="IdCedula" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
+            <div class="col-md-4">
+                <label asp-for="Nombre" class="form-label">Nombre</label>
+                <input asp-for="Nombre" class="form-control" required />
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Apellido1" class="control-label"></label>
-                <input asp-for="Apellido1" class="form-control" />
+            <div class="col-md-4">
+                <label asp-for="Apellido1" class="form-label">Primer Apellido</label>
+                <input asp-for="Apellido1" class="form-control" required />
                 <span asp-validation-for="Apellido1" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Apellido2" class="control-label"></label>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-4">
+                <label asp-for="Apellido2" class="form-label">Segundo Apellido</label>
                 <input asp-for="Apellido2" class="form-control" />
                 <span asp-validation-for="Apellido2" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input asp-for="FechaNacimiento" class="form-control" />
+            <div class="col-md-4">
+                <label asp-for="FechaNacimiento" class="form-label">Fecha de nacimiento</label>
+                <input asp-for="FechaNacimiento" type="date" class="form-control" max="@DateTime.Today.ToString("yyyy-MM-dd")" required />
                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="IdGenero" class="control-label"></label>
-                <select asp-for="IdGenero" class ="form-control" asp-items="ViewBag.IdGenero"></select>
+            <div class="col-md-4">
+                <label asp-for="IdGenero" class="form-label">Género</label>
+                <select asp-for="IdGenero" class="form-select" asp-items="ViewBag.IdGenero">
+                    <option value="">Seleccione género</option>
+                </select>
+                <span asp-validation-for="IdGenero" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+        </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+        <hr class="my-4" />
+
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Tipo de correo</label>
+                <select name="TipoCorreo" class="form-select" asp-items="ViewBag.IdTipoCorreo">
+                    <option value="">Seleccione tipo de correo</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Correo electrónico</label>
+                <input name="DirecCorreo" type="email" class="form-control" placeholder="ejemplo@correo.com" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label class="form-label">Tipo de teléfono</label>
+                <select name="TipoTelefono" class="form-select" asp-items="ViewBag.IdTipoTelefono">
+                    <option value="">Seleccione tipo de teléfono</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Número de teléfono</label>
+                <input name="Telefono" type="tel" class="form-control" pattern="\d{8,15}" title="Debe contener entre 8 y 15 dígitos" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <div class="form-check form-switch">
+                    @* Usamos acceso seguro a Model: Model puede ser null en GET *@
+                    <input type="checkbox" name="Activo" class="form-check-input" @((Model?.Activo == true) ? "checked" : "") id="Activo" />
+                    <label class="form-check-label" for="Activo">Activo</label>
+                </div>
+                @* Campo oculto para enviar "false" si el checkbox no se marca *@
+                <input type="hidden" name="Activo" value="false" />
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
