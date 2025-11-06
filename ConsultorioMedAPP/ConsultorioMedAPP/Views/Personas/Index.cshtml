@@ -2,6 +2,10 @@
 
 @{
     ViewData["Title"] = "Lista de Personas";
+
+    // ✅ Variables locales para evitar errores de Razor
+    var generoSel = (ViewBag.GeneroSeleccionado as string) ?? "";
+    var cantidadSel = ViewBag.CantidadSeleccionada != null ? ViewBag.CantidadSeleccionada.ToString() : "";
 }
 
 <h1 class="text-center mb-4">Lista de Personas</h1>
@@ -9,6 +13,56 @@
 <p>
     <a asp-action="Create" class="btn btn-success">Crear Nueva Persona</a>
 </p>
+
+<!-- FORMULARIO DE FILTRO -->
+<form method="get" asp-action="Index" class="row g-3 mb-3 align-items-end">
+    <div class="col-md-3">
+        <label for="cantidad" class="form-label">Cantidad a mostrar</label>
+        <input type="number" id="cantidad" name="cantidad" class="form-control" min="1"
+               value="@cantidadSel" placeholder="Ej: 5" />
+    </div>
+
+    <div class="col-md-3">
+        <label for="genero" class="form-label">Filtrar por género</label>
+        <select id="genero" name="genero" class="form-select">
+            @if (string.IsNullOrEmpty(generoSel))
+            {
+                <option value="" selected="selected">Todos</option>
+            }
+            else
+            {
+                <option value="">Todos</option>
+            }
+
+            @if (generoSel == "Hombre")
+            {
+                <option value="Hombre" selected="selected">Hombre</option>
+            }
+            else
+            {
+                <option value="Hombre">Hombre</option>
+            }
+
+            @if (generoSel == "Mujer")
+            {
+                <option value="Mujer" selected="selected">Mujer</option>
+            }
+            else
+            {
+                <option value="Mujer">Mujer</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-success w-100">Filtrar</button>
+    </div>
+
+    <div class="col-md-2">
+        <a asp-action="Index" class="btn btn-secondary w-100">Restablecer</a>
+    </div>
+</form>
 
 <table class="table table-striped table-bordered shadow-sm align-middle rounded">
     <thead class="table-success text-center">

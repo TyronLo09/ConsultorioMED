@@ -27,15 +27,35 @@ namespace ConsultorioMedAPP.Controllers
         }
 
         // GET: Personas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string genero, int? cantidad)
         {
-            var consultorioMedDBContext = _context.Personas
+            // Cargar datos base
+            var personas = _context.Personas
                 .Include(p => p.IdGeneroNavigation)
                 .Include(p => p.Correos)
-                .Include(p => p.Telefonos);
+                .Include(p => p.Telefonos)
+                .AsQueryable();
 
-            var list = await consultorioMedDBContext.ToListAsync();
-            return View(list);
+            // ✅ Filtro por género (solo si se selecciona uno)
+            if (!string.IsNullOrEmpty(genero))
+            {
+                personas = personas.Where(p => p.IdGeneroNavigation.Descripcion == genero);
+            }
+
+            // ✅ Filtro por cantidad (mostrar solo n personas)
+            if (cantidad.HasValue && cantidad > 0)
+            {
+                personas = personas.Take(cantidad.Value);
+            }
+
+            // Obtener lista final
+            var lista = await personas.ToListAsync();
+
+            // ✅ Enviar valores actuales del filtro a la vista (para mantener el estado)
+            ViewBag.GeneroSeleccionado = genero;
+            ViewBag.CantidadSeleccionada = cantidad;
+
+            return View(lista);
         }
 
         // GET: Personas/Details/5
