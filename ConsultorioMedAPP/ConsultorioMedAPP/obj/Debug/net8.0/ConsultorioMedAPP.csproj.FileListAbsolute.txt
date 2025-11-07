@@ -854,4 +854,3 @@ D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\Consu
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\ConsultorioMedAPP.pdb
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\ConsultorioMedAPP.genruntimeconfig.cache
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\ref\ConsultorioMedAPP.dll
-D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
