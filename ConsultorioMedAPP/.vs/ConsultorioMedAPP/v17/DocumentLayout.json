@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\personas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\personas\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\personas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\personas\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\personascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -42,24 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Delete.cshtml",
               "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Personas\\Delete.cshtml",
               "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Personas\\Delete.cshtml",
               "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Personas\\Delete.cshtml",
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Personas\\Delete.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACgAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAADMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-06T19:56:17.207Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Personas\\Index.cshtml",
               "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Personas\\Index.cshtml",
@@ -67,8 +67,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Personas\\Index.cshtml",
               "ViewState": "AgIAACIAAAAAAAAAAAAiwDcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-06T19:33:44.885Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T19:33:44.885Z"
             },
             {
               "$type": "Document",
@@ -80,8 +79,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Personas\\Details.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-06T17:06:21.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T17:06:21.387Z"
             },
             {
               "$type": "Document",
@@ -93,8 +91,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Personas\\Edit.cshtml",
               "ViewState": "AgIAAFgAAAAAAAAAAAAiwG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-06T17:05:35.194Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T17:05:35.194Z"
             },
             {
               "$type": "Document",
@@ -106,18 +103,17 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Personas\\Create.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-06T17:05:11.326Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-06T17:05:11.326Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "PersonasController.cs",
               "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\PersonasController.cs",
               "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\PersonasController.cs",
               "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\PersonasController.cs",
               "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\PersonasController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAwwDoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAADoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-06T16:47:28.91Z",
               "EditorCaption": ""
@@ -132,8 +128,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\LoginController.cs",
               "ViewState": "AgIAACgAAAAAAAAAAAAIwEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T18:41:42.465Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T18:41:42.465Z"
             },
             {
               "$type": "Document",
@@ -145,8 +140,7 @@
               "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABYAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-10-24T21:31:51.575Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-24T21:31:51.575Z"
             }
           ]
         }
