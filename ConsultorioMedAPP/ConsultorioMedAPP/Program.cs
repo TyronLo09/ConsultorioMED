@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Registrar DbContext con la cadena de conexión
 builder.Services.AddDbContext<ConsultorioMedDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConsultorioMedDB")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("conexionKendall")));
 
 // Agregar controladores con vistas
 builder.Services.AddControllersWithViews();
