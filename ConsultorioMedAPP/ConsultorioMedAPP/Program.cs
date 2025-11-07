@@ -1,43 +1,76 @@
 using ConsultorioMedAPP.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registrar DbContext con la cadena de conexión
-builder.Services.AddDbContext<ConsultorioMedDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("conexionKendall")));
+var conexionTyron = builder.Configuration.GetConnectionString("conexionTyron");
+var conexionKendall = builder.Configuration.GetConnectionString("conexionKendall");
 
-// Agregar controladores con vistas
+string connectionString;
+
+if (!string.IsNullOrWhiteSpace(conexionTyron) && ProbarConexion(conexionTyron))
+{
+    connectionString = conexionTyron;
+    Console.WriteLine("Conectado a TYRON");
+}
+else if (!string.IsNullOrWhiteSpace(conexionKendall) && ProbarConexion(conexionKendall))
+{
+    connectionString = conexionKendall;
+    Console.WriteLine("Conectado a KENDALL");
+}
+else
+{
+    Console.WriteLine("No se pudo conectar ni a TYRON ni a KENDALL. Verifica los servidores SQL.");
+    throw new Exception("No hay servidores SQL disponibles");
+}
+
+builder.Services.AddDbContext<ConsultorioMedDBContext>(options =>
+    options.UseSqlServer(connectionString, sqlOptions =>
+        sqlOptions.EnableRetryOnFailure()));
+
 builder.Services.AddControllersWithViews();
 
-// Agregar soporte para sesiones
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Tiempo de sesión (30 min)
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
 
-// Configuración del pipeline HTTP
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
 
 app.UseStaticFiles();
-
 app.UseRouting();
-
-// Activar uso de sesiones
 app.UseSession();
-
 app.UseAuthorization();
 
-// Ruta por defecto: que inicie en el Login
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
+
+static bool ProbarConexion(string connectionString)
+{
+    if (string.IsNullOrWhiteSpace(connectionString))
+        return false;
+
+    try
+    {
+        using var conn = new SqlConnection(connectionString);
+        conn.Open();
+        Console.WriteLine($"Prueba de conexión exitosa con: {connectionString}");
+        return true;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error al probar conexión: {ex.Message}");
+        return false;
+    }
+}
