@@ -132,7 +132,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 // Verificar directamente si el seguro existe
                 var existeSeguro = await _context.Seguros.AnyAsync(s => s.IdSeguro == seguro.IdSeguro);

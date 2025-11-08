@@ -1,3 +1,4 @@
+using ConsultorioMedAPP.Filters;
 using ConsultorioMedAPP.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,10 @@ builder.Services.AddDbContext<ConsultorioMedDBContext>(options =>
     options.UseSqlServer(connectionString, sqlOptions =>
         sqlOptions.EnableRetryOnFailure()));
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    options.Filters.Add(new AutorizacionFilter());
+});
 
 builder.Services.AddSession(options =>
 {
@@ -40,10 +44,18 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseDeveloperExceptionPage();
 }
+else
+{
+    app.UseExceptionHandler("/Error/500");
+    app.UseStatusCodePagesWithReExecute("/Error/{0}");
+}
+
+app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 
 app.UseStaticFiles();
 app.UseRouting();

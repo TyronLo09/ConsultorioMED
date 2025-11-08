@@ -132,7 +132,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 // Verificar directamente si el teléfono existe
                 var existeTelefono = await _context.Telefonos.AnyAsync(t => t.IdTelefono == telefono.IdTelefono);

@@ -121,7 +121,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 // Verificar directamente si el doctor existe
                 var existeDoctor = await _context.Doctors.AnyAsync(d => d.IdCedula == doctor.IdCedula);

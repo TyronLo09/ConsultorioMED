@@ -26,6 +26,8 @@
             height: 100%;
             box-shadow: 3px 0 15px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar-header {
@@ -61,6 +63,7 @@
 
         .sidebar-menu {
             padding: 15px 0;
+            flex-grow: 1;
         }
 
         /* Enlaces del menú lateral */
@@ -141,6 +144,45 @@
         hr {
             border-color: rgba(255, 255, 255, 0.4);
             margin: 10px 20px;
+        }
+
+        /* Botón de cerrar sesión */
+        .logout-section {
+            padding: 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-logout {
+            width: 100%;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+            .btn-logout:hover {
+                background: linear-gradient(135deg, #c82333, #a71e2a);
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+            }
+
+            .btn-logout:active {
+                transform: translateY(0);
+            }
+
+        .logout-icon {
+            font-size: 1.1rem;
         }
     </style>
 
@@ -227,6 +269,14 @@
 
             <a asp-controller="Home" asp-action="Privacy">
                 <span class="menu-icon">🔒</span> Privacidad
+            </a>
+        </div>
+
+        <!-- Sección de Cerrar Sesión -->
+        <div class="logout-section">
+            <a asp-controller="Login" asp-action="Logout" class="btn-logout">
+                <span class="logout-icon">🚪</span>
+                Cerrar Sesión
             </a>
         </div>
     </div>

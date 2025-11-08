@@ -130,7 +130,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 // Verificar directamente si el turno existe
                 var existeTurno = await _context.Turnos.AnyAsync(t => t.IdTurno == turno.IdTurno);

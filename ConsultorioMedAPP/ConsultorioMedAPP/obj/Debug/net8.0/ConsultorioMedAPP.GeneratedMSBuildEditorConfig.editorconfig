@@ -148,6 +148,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Downloads/PROYECTO TYRON CONSULTORION MEDICO/Repositorio/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Error/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcTm90Rm91bmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Downloads/PROYECTO TYRON CONSULTORION MEDICO/Repositorio/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Especialidads/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXNwZWNpYWxpZGFkc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -322,6 +326,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Downloads/PROYECTO TYRON CONSULTORION MEDICO/Repositorio/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Downloads/PROYECTO TYRON CONSULTORION MEDICO/Repositorio/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Downloads/PROYECTO TYRON CONSULTORION MEDICO/Repositorio/ConsultorioMED/ConsultorioMedAPP/ConsultorioMedAPP/Views/Shared/_ValidationScriptsPartial.cshtml]

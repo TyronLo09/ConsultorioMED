@@ -131,7 +131,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException ex)
+            catch (DbUpdateConcurrencyException)
             {
                 // Verificar directamente si el correo existe
                 var existeCorreo = await _context.Correos.AnyAsync(c => c.IdCorreo == correo.IdCorreo);

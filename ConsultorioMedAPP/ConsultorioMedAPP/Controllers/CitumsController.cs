@@ -135,7 +135,7 @@ namespace ConsultorioMedAPP.Controllers
         }
 
         // Método auxiliar para cargar los SelectList
-        private void CargarSelectLists(Citum citum = null)
+        private void CargarSelectLists(Citum? citum = null)
         {
             ViewData["DoctorIdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", citum?.DoctorIdCedula);
             ViewData["EstadoCitaIdEstadoCita"] = new SelectList(_context.EstadoCita, "IdEstadoCita", "IdEstadoCita", citum?.EstadoCitaIdEstadoCita);
