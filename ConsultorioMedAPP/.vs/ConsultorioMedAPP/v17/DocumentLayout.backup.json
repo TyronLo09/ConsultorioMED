@@ -1,54 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\",
+  "WorkspaceRootPath": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\error\\notfound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\error\\notfound.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\tipotelefonoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\tipotelefonoes\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\tipotelefonoes\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\tipotelefonoes\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\filters\\autorizacionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\filters\\autorizacionfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\tipotelefonoes\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\tipotelefonoes\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\tipotelefonoes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\tipotelefonoes\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\tipotelefonoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\tipotelefonoes\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|c:\\users\\tryro\\documents\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\models\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\models\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\models\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\views\\shared\\_layoutlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\views\\shared\\_layoutlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|d:\\downloads\\proyecto tyron consultorion medico\\repositorio\\consultoriomed\\consultoriomedapp\\consultoriomedapp\\utilities\\sessionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7DAA3CD8-4B0E-4FEC-A78E-1ABD2EB53E2F}|ConsultorioMedAPP\\ConsultorioMedAPP.csproj|solutionrelative:consultoriomedapp\\utilities\\sessionhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,166 +34,88 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAUBAAAAAAAAAAAAABwBAAAeAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Edit.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Edit.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Edit.cshtml",
+              "ViewState": "AgIAAAgAAAAAAAAAAADwvywAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T02:54:25.603Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Models\\Usuario.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Models\\Usuario.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Models\\Usuario.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Models\\Usuario.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:43:34.118Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Persona.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Models\\Persona.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Models\\Persona.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Models\\Persona.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Models\\Persona.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAIBAwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:43:12.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:41:56.896Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "_LayoutLogin.cshtml",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_LayoutLogin.cshtml",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Shared\\_LayoutLogin.cshtml",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_LayoutLogin.cshtml",
-              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_LayoutLogin.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T02:35:02.681Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "SessionHelper.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Utilities\\SessionHelper.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Utilities\\SessionHelper.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Utilities\\SessionHelper.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Utilities\\SessionHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:27:16.575Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AutorizacionFilter.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Filters\\AutorizacionFilter.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Filters\\AutorizacionFilter.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Filters\\AutorizacionFilter.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Filters\\AutorizacionFilter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:21:51.715Z",
+              "WhenOpened": "2025-11-12T21:10:42.791Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Program.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Program.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Program.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Program.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAwDYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:17:01.969Z",
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Details.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Details.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Details.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Details.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAiwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T21:10:18.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Delete.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Delete.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Delete.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvyIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T21:09:57.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Create.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Create.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T21:09:35.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "NotFound.cshtml",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Error\\NotFound.cshtml",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Error\\NotFound.cshtml",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Error\\NotFound.cshtml",
-              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Error\\NotFound.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T03:01:51.926Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ErrorController.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\ErrorController.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\ErrorController.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\ErrorController.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\ErrorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T03:00:41.708Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Login\\Index.cshtml",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Login\\Index.cshtml",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Login\\Index.cshtml",
-              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Login\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAeAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Index.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\TipoTelefonoes\\Index.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\TipoTelefonoes\\Index.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-08T02:13:20.293Z",
+              "WhenOpened": "2025-11-12T21:07:26.812Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Controllers\\LoginController.cs",
-              "ToolTip": "D:\\Downloads\\PROYECTO TYRON CONSULTORION MEDICO\\Repositorio\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "ConsultorioMedAPP\\Controllers\\LoginController.cs",
-              "ViewState": "AgIAAEoAAAAAAAAAAAA1wFwAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-08T02:13:22.027Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Tryro\\Documents\\ConsultorioMED\\ConsultorioMedAPP\\ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ConsultorioMedAPP\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAMMAAAAAAAAAAAAAANIAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T20:52:26.064Z",
               "EditorCaption": ""
             }
           ]

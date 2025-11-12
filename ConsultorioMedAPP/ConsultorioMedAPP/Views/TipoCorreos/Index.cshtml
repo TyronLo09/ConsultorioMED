@@ -1,41 +1,54 @@
 ﻿@model IEnumerable<ConsultorioMedAPP.Models.TipoCorreo>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Tipos de Correo";
 }
 
-<h1>Index</h1>
+<h1 class="text-center mb-4">Lista de Tipos de Correo</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success shadow-sm">
+        <i class="bi bi-plus-circle"></i> Crear Nuevo Tipo de Correo
+    </a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-striped table-bordered shadow-sm align-middle rounded">
+    <thead class="table-success text-center">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th></th>
+            <th>Descripción</th>
+            <th>Estado</th>
+            <th>Acciones</th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTipoCorreo">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdTipoCorreo">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdTipoCorreo">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody class="text-center">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Descripcion</td>
+                <td>
+                    @if (item.Activo == true)
+                    {
+                        <span class="badge bg-success px-3 py-2">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-danger px-3 py-2">Inactivo</span>
+                    }
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdTipoCorreo" class="btn btn-primary btn-sm me-1">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.IdTipoCorreo" class="btn btn-info btn-sm me-1 text-white">
+                        <i class="bi bi-eye"></i> Detalles
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.IdTipoCorreo" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
