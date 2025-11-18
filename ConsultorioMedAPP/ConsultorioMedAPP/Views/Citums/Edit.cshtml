@@ -1,69 +1,82 @@
 ﻿@model ConsultorioMedAPP.Models.Citum
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Cita";
 }
 
-<h1>Edit</h1>
+<div class="container mt-4">
+    <h2 class="text-center mb-4"><i class="bi bi-pencil-square"></i> Editar Cita</h2>
+    <hr />
 
-<h4>Citum</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdCita" />
-            <div class="form-group">
-                <label asp-for="PacienteIdCedula" class="control-label"></label>
-                <select asp-for="PacienteIdCedula" class="form-control" asp-items="ViewBag.PacienteIdCedula"></select>
-                <span asp-validation-for="PacienteIdCedula" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DoctorIdCedula" class="control-label"></label>
-                <select asp-for="DoctorIdCedula" class="form-control" asp-items="ViewBag.DoctorIdCedula"></select>
-                <span asp-validation-for="DoctorIdCedula" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hora" class="control-label"></label>
-                <input asp-for="Hora" class="form-control" />
-                <span asp-validation-for="Hora" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EstadoCitaIdEstadoCita" class="control-label"></label>
-                <select asp-for="EstadoCitaIdEstadoCita" class="form-control" asp-items="ViewBag.EstadoCitaIdEstadoCita"></select>
-                <span asp-validation-for="EstadoCitaIdEstadoCita" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Precio" class="control-label"></label>
-                <input asp-for="Precio" class="form-control" />
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaCreacion" class="control-label"></label>
-                <input asp-for="FechaCreacion" class="form-control" />
-                <span asp-validation-for="FechaCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaActualizacion" class="control-label"></label>
-                <input asp-for="FechaActualizacion" class="form-control" />
-                <span asp-validation-for="FechaActualizacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="Edit" class="shadow p-4 rounded bg-light">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input type="hidden" asp-for="IdCita" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="PacienteIdCedula" class="form-label">Paciente</label>
+                    <select asp-for="PacienteIdCedula" class="form-select" asp-items="ViewBag.PacienteIdCedula"></select>
+                    <span asp-validation-for="PacienteIdCedula" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DoctorIdCedula" class="form-label">Doctor</label>
+                    <select asp-for="DoctorIdCedula" class="form-select" asp-items="ViewBag.DoctorIdCedula"></select>
+                    <span asp-validation-for="DoctorIdCedula" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Fecha" class="form-label">Fecha de la Cita</label>
+                    <input asp-for="Fecha" class="form-control" type="date" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Hora" class="form-label">Hora</label>
+                    <input asp-for="Hora" class="form-control" type="time" />
+                    <span asp-validation-for="Hora" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="EstadoCitaIdEstadoCita" class="form-label">Estado de la Cita</label>
+                    <select asp-for="EstadoCitaIdEstadoCita" class="form-select" asp-items="ViewBag.EstadoCitaIdEstadoCita"></select>
+                    <span asp-validation-for="EstadoCitaIdEstadoCita" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Precio" class="form-label">Precio (₡)</label>
+                    <input asp-for="Precio" class="form-control" type="number" step="0.01" />
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="FechaCreacion" class="form-label">Fecha de Creación</label>
+                    <input asp-for="FechaCreacion" class="form-control" type="datetime-local" readonly />
+                    <span asp-validation-for="FechaCreacion" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="FechaActualizacion" class="form-label">Fecha de Actualización</label>
+                    <input asp-for="FechaActualizacion" class="form-control" type="datetime-local" />
+                    <span asp-validation-for="FechaActualizacion" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver a la lista
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-save"></i> Guardar cambios
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

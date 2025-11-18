@@ -45,37 +45,88 @@ namespace ConsultorioMedAPP.Controllers
             return View(doctor);
         }
 
+
         // GET: Doctors/Create
         public IActionResult Create()
         {
-            ViewData["IdCedula"] = new SelectList(_context.Personas, "IdCedula", "IdCedula");
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidads, "IdEspecialidad", "IdEspecialidad");
+            ViewData["IdCedula"] = new SelectList(_context.Personas.Select(p => new
+            {
+                p.IdCedula,
+                NombreCompleto = p.IdCedula + " - " + p.Nombre + " " + p.Apellido1 + " " + p.Apellido2
+            }), "IdCedula", "NombreCompleto");
+
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidads, "IdEspecialidad", "Descripcion");
             return View();
         }
+
         // POST: Doctors/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Doctor doctor)
         {
-            try
+            Console.WriteLine("🩺 Entró al método POST Create de Doctor");
+
+            // 🔹 Cargar las entidades relacionadas
+            doctor.IdCedulaNavigation = await _context.Personas.FindAsync(doctor.IdCedula);
+            doctor.IdEspecialidadNavigation = await _context.Especialidads.FindAsync(doctor.IdEspecialidad);
+
+            // 🔹 Eliminar errores de validación de navegación
+            ModelState.Remove("IdCedulaNavigation");
+            ModelState.Remove("IdEspecialidadNavigation");
+
+            if (ModelState.IsValid)
             {
-                if (doctor != null)
+                try
                 {
                     _context.Add(doctor);
                     await _context.SaveChangesAsync();
+                    Console.WriteLine("✅ Doctor guardado correctamente.");
                     return RedirectToAction(nameof(Index));
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("❌ Error al guardar doctor: " + ex.Message);
+                    ViewData["Error"] = "Error al crear el doctor: " + ex.Message;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ViewData["Error"] = "Error al crear el doctor: " + ex.Message;
+                Console.WriteLine("❌ ModelState inválido");
+                foreach (var err in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine("⚠️ " + err.ErrorMessage);
+                }
             }
 
-            ViewData["IdCedula"] = new SelectList(_context.Personas, "IdCedula", "IdCedula", doctor?.IdCedula);
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidads, "IdEspecialidad", "IdEspecialidad", doctor?.IdEspecialidad);
+            // 🔹 Recargar listas si hay error
+            ViewData["IdCedula"] = new SelectList(
+                _context.Personas.Select(p => new
+                {
+                    p.IdCedula,
+                    NombreCompleto = p.IdCedula + " - " + p.Nombre + " " + p.Apellido1 + " " + p.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto",
+                doctor.IdCedula
+            );
+
+            ViewData["IdEspecialidad"] = new SelectList(
+                _context.Especialidads,
+                "IdEspecialidad",
+                "Descripcion",
+                doctor.IdEspecialidad
+            );
+
+            // ✅ Retorno final garantizado
             return View(doctor);
         }
 
+
+
+
+
+
+        // GET: Doctors/Edit/5
         // GET: Doctors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -84,15 +135,39 @@ namespace ConsultorioMedAPP.Controllers
                 return NotFound();
             }
 
-            var doctor = await _context.Doctors.FindAsync(id);
+            var doctor = await _context.Doctors
+                .Include(d => d.IdCedulaNavigation)
+                .Include(d => d.IdEspecialidadNavigation)
+                .FirstOrDefaultAsync(d => d.IdCedula == id);
+
             if (doctor == null)
             {
                 return NotFound();
             }
-            ViewData["IdCedula"] = new SelectList(_context.Personas, "IdCedula", "IdCedula", doctor.IdCedula);
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidads, "IdEspecialidad", "IdEspecialidad", doctor.IdEspecialidad);
+
+            // ✅ Mostrar el nombre completo de la persona en lugar del número de cédula
+            ViewData["IdCedula"] = new SelectList(
+                _context.Personas.Select(p => new
+                {
+                    p.IdCedula,
+                    NombreCompleto = p.Nombre + " " + p.Apellido1 + " " + p.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto",
+                doctor.IdCedula
+            );
+
+            // ✅ Mostrar la descripción de la especialidad en lugar del ID
+            ViewData["IdEspecialidad"] = new SelectList(
+                _context.Especialidads,
+                "IdEspecialidad",
+                "Descripcion",
+                doctor.IdEspecialidad
+            );
+
             return View(doctor);
         }
+
 
         // POST: Doctors/Edit/5
         [HttpPost]
@@ -121,7 +196,7 @@ namespace ConsultorioMedAPP.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
                 // Verificar directamente si el doctor existe
                 var existeDoctor = await _context.Doctors.AnyAsync(d => d.IdCedula == doctor.IdCedula);
@@ -185,3 +260,4 @@ namespace ConsultorioMedAPP.Controllers
         }
     }
 }
+

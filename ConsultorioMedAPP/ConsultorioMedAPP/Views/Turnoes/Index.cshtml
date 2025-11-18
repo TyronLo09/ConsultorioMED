@@ -4,44 +4,47 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Lista de Turnos</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Crear Nuevo Turno</a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-success">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Activo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCedulaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdTipoTurnoNavigation)
-            </th>
-            <th></th>
+            <th>Doctor</th>
+            <th>Tipo de Turno</th>
+            <th>Activo</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Activo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCedulaNavigation.IdCedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdTipoTurnoNavigation.IdTipoTurno)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdTurno">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdTurno">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdTurno">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.IdCedulaNavigation.IdCedula
+                </td>
+                <td>
+                    @item.IdTipoTurnoNavigation.Descripcion
+                </td>
+                <td>
+                    @if (item.Activo == true)
+                    {
+                        <span class="badge bg-success">Activo</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Inactivo</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdTurno" class="btn btn-primary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdTurno" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdTurno" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

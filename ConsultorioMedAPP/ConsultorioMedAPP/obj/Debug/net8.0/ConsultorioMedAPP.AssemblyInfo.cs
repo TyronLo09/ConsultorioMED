@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConsultorioMedAPP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbfa8405aeea1ff260fba344215669a9932844aa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+da1f360464066991d6a069e7c8942f2274cb705c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConsultorioMedAPP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConsultorioMedAPP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

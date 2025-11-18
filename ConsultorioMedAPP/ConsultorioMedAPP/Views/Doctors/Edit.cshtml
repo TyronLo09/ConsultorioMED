@@ -1,39 +1,78 @@
 ﻿@model ConsultorioMedAPP.Models.Doctor
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Doctor";
 }
 
-<h1>Edit</h1>
+<div class="card shadow-lg border-0 rounded-4 mt-4">
+    <div class="card-header text-white text-center" style="background-color: #20c997;">
+        <h3 class="mb-0">Editar Doctor</h3>
+    </div>
 
-<h4>Doctor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             <input type="hidden" asp-for="IdCedula" />
-            <div class="form-group">
-                <label asp-for="IdEspecialidad" class="control-label"></label>
-                <select asp-for="IdEspecialidad" class="form-control" asp-items="ViewBag.IdEspecialidad"></select>
+
+            <!-- Campo de Especialidad -->
+            <div class="mb-3">
+                <label asp-for="IdEspecialidad" class="form-label fw-semibold">Especialidad</label>
+                <select asp-for="IdEspecialidad"
+                        class="form-select rounded-3 shadow-sm"
+                        asp-items="ViewBag.IdEspecialidad">
+                    <option value="">Seleccione una especialidad</option>
+                </select>
                 <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Activo" class="control-label"></label>
-                <input asp-for="Activo" class="form-control" />
+
+            <!-- Campo de Estado (sin línea con C# en atributos) -->
+            <div class="mb-3">
+                <label asp-for="Activo" class="form-label fw-semibold">Estado</label>
+
+                @{
+                    // captura segura del valor nullable
+                    bool? activo = Model?.Activo;
+                }
+
+                <select asp-for="Activo" class="form-select rounded-3 shadow-sm">
+                    <option value="">Seleccione estado</option>
+
+                    @* Renderizamos las opciones con bloques Razor para evitar C# dentro de atributos *@
+                    @if (activo == true)
+                    {
+                        <option value="true" selected>Activo</option>
+                        <option value="false">Inactivo</option>
+                    }
+                    else if (activo == false)
+                    {
+                        <option value="true">Activo</option>
+                        <option value="false" selected>Inactivo</option>
+                    }
+                    else
+                    {
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    }
+                </select>
+
                 <span asp-validation-for="Activo" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+
+            <!-- Botones -->
+            <div class="d-flex justify-content-end mt-4">
+                <a asp-action="Index" class="btn btn-secondary me-2 rounded-3 px-4">
+                    <i class="bi bi-arrow-left"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-success rounded-3 px-4">
+                    <i class="bi bi-save"></i> Guardar Cambios
+                </button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

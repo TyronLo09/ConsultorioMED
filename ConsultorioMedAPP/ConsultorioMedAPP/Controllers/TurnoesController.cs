@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,26 +20,25 @@ namespace ConsultorioMedAPP.Controllers
         // GET: Turnoes
         public async Task<IActionResult> Index()
         {
-            var consultorioMedDBContext = _context.Turnos.Include(t => t.IdCedulaNavigation).Include(t => t.IdTipoTurnoNavigation);
-            return View(await consultorioMedDBContext.ToListAsync());
+            var turnos = await _context.Turnos
+                .Include(t => t.IdCedulaNavigation)    // Doctor/Persona
+                .Include(t => t.IdTipoTurnoNavigation) // TipoTurno
+                .ToListAsync();
+
+            return View(turnos);
         }
 
         // GET: Turnoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var turno = await _context.Turnos
                 .Include(t => t.IdCedulaNavigation)
                 .Include(t => t.IdTipoTurnoNavigation)
-                .FirstOrDefaultAsync(m => m.IdTurno == id);
-            if (turno == null)
-            {
-                return NotFound();
-            }
+                .FirstOrDefaultAsync(t => t.IdTurno == id);
+
+            if (turno == null) return NotFound();
 
             return View(turno);
         }
@@ -48,13 +46,25 @@ namespace ConsultorioMedAPP.Controllers
         // GET: Turnoes/Create
         public IActionResult Create()
         {
-            ViewData["IdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula");
-            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "IdTipoTurno");
+            // Usamos NombreCompleto del doctor para que se vea bien en el dropdown
+            ViewData["IdCedula"] = new SelectList(
+                _context.Doctors.Select(d => new
+                {
+                    d.IdCedula,
+                    NombreCompleto = d.IdCedulaNavigation.Nombre + " " +
+                                     d.IdCedulaNavigation.Apellido1 + " " +
+                                     d.IdCedulaNavigation.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto"
+            );
+
+            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "Descripcion");
+
             return View();
         }
 
         // POST: Turnoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Turno turno)
@@ -77,97 +87,107 @@ namespace ConsultorioMedAPP.Controllers
                 ViewData["Error"] = "Error al crear el turno: " + ex.Message;
             }
 
-            ViewData["IdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", turno?.IdCedula);
-            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "IdTipoTurno", turno?.IdTipoTurno);
+            ViewData["IdCedula"] = new SelectList(
+                _context.Doctors.Select(d => new
+                {
+                    d.IdCedula,
+                    NombreCompleto = d.IdCedulaNavigation.Nombre + " " +
+                                     d.IdCedulaNavigation.Apellido1 + " " +
+                                     d.IdCedulaNavigation.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto",
+                turno?.IdCedula
+            );
+
+            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "Descripcion", turno?.IdTipoTurno);
             return View(turno);
         }
 
         // GET: Turnoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var turno = await _context.Turnos.FindAsync(id);
-            if (turno == null)
-            {
-                return NotFound();
-            }
-            ViewData["IdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", turno.IdCedula);
-            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "IdTipoTurno", turno.IdTipoTurno);
+            if (turno == null) return NotFound();
+
+            ViewData["IdCedula"] = new SelectList(
+                _context.Doctors.Select(d => new
+                {
+                    d.IdCedula,
+                    NombreCompleto = d.IdCedulaNavigation.Nombre + " " +
+                                     d.IdCedulaNavigation.Apellido1 + " " +
+                                     d.IdCedulaNavigation.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto",
+                turno.IdCedula
+            );
+
+            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "Descripcion", turno.IdTipoTurno);
+
             return View(turno);
         }
 
         // POST: Turnoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Turno turno)
         {
-            if (id != turno.IdTurno)
-            {
-                return NotFound();
-            }
+            if (id != turno.IdTurno) return NotFound();
 
             try
             {
-                // Cargar la entidad existente
                 var turnoExistente = await _context.Turnos.FindAsync(id);
-                if (turnoExistente == null)
-                {
-                    return NotFound();
-                }
+                if (turnoExistente == null) return NotFound();
 
-                // Actualizar solo las propiedades necesarias
                 turnoExistente.IdCedula = turno.IdCedula;
                 turnoExistente.IdTipoTurno = turno.IdTipoTurno;
                 turnoExistente.Activo = turno.Activo;
 
-                // Guardar cambios
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             catch (DbUpdateConcurrencyException)
             {
-                // Verificar directamente si el turno existe
-                var existeTurno = await _context.Turnos.AnyAsync(t => t.IdTurno == turno.IdTurno);
-                if (!existeTurno)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    ViewData["Error"] = "Error de concurrencia: El registro fue modificado por otro usuario. Por favor, recargue la página e intente nuevamente.";
-                }
+                if (!_context.Turnos.Any(t => t.IdTurno == turno.IdTurno)) return NotFound();
+                ViewData["Error"] = "Error de concurrencia: El registro fue modificado por otro usuario. Por favor, recargue la página e intente nuevamente.";
             }
             catch (Exception ex)
             {
                 ViewData["Error"] = "Error al actualizar el turno: " + ex.Message;
             }
 
-            ViewData["IdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", turno.IdCedula);
-            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "IdTipoTurno", turno.IdTipoTurno);
+            ViewData["IdCedula"] = new SelectList(
+                _context.Doctors.Select(d => new
+                {
+                    d.IdCedula,
+                    NombreCompleto = d.IdCedulaNavigation.Nombre + " " +
+                                     d.IdCedulaNavigation.Apellido1 + " " +
+                                     d.IdCedulaNavigation.Apellido2
+                }),
+                "IdCedula",
+                "NombreCompleto",
+                turno.IdCedula
+            );
+
+            ViewData["IdTipoTurno"] = new SelectList(_context.TipoTurnos, "IdTipoTurno", "Descripcion", turno.IdTipoTurno);
+
             return View(turno);
         }
+
         // GET: Turnoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var turno = await _context.Turnos
                 .Include(t => t.IdCedulaNavigation)
                 .Include(t => t.IdTipoTurnoNavigation)
                 .FirstOrDefaultAsync(m => m.IdTurno == id);
-            if (turno == null)
-            {
-                return NotFound();
-            }
+
+            if (turno == null) return NotFound();
 
             return View(turno);
         }
@@ -178,10 +198,7 @@ namespace ConsultorioMedAPP.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var turno = await _context.Turnos.FindAsync(id);
-            if (turno != null)
-            {
-                _context.Turnos.Remove(turno);
-            }
+            if (turno != null) _context.Turnos.Remove(turno);
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

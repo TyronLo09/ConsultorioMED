@@ -1,77 +1,120 @@
 ﻿@model IEnumerable<ConsultorioMedAPP.Models.Citum>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Listado de Citas";
 }
 
-<h1>Index</h1>
+<style>
+    /* 🔹 Estilos generales para todos los botones redondos */
+    .btn-rounded {
+        border-radius: 50px;
+        padding: 6px 16px;
+        font-weight: 500;
+        transition: all 0.2s ease-in-out;
+    }
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Fecha)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hora)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Precio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaActualizacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DoctorIdCedulaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EstadoCitaIdEstadoCitaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PacienteIdCedulaNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Precio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaActualizacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorIdCedulaNavigation.IdCedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoCitaIdEstadoCitaNavigation.IdEstadoCita)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PacienteIdCedulaNavigation.IdCedula)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCita">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCita">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCita">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+        .btn-rounded i {
+            margin-right: 6px;
+        }
+
+    /* 🟦 Botón Editar - azul */
+    .btn-editar {
+        background-color: #0d6efd;
+        color: white !important;
+        border: none;
+    }
+
+        .btn-editar:hover {
+            background-color: #0b5ed7;
+            transform: scale(1.05);
+        }
+
+    /* 🟩 Botón Detalles - turquesa */
+    .btn-detalles {
+        background-color: #20c997;
+        color: white !important;
+        border: none;
+    }
+
+        .btn-detalles:hover {
+            background-color: #17a589;
+            transform: scale(1.05);
+        }
+
+    /* 🔴 Botón Eliminar - rojo */
+    .btn-eliminar {
+        background-color: #dc3545;
+        color: white !important;
+        border: none;
+    }
+
+        .btn-eliminar:hover {
+            background-color: #bb2d3b;
+            transform: scale(1.05);
+        }
+
+    /* Espaciado entre botones */
+    .btn-group .btn-rounded {
+        margin: 0 4px;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary"><i class="bi bi-calendar3"></i> Listado de Citas</h2>
+        <a asp-action="Create" class="btn btn-success">
+            <i class="bi bi-plus-circle"></i> Nueva Cita
+        </a>
+    </div>
+
+    <table class="table table-striped table-hover shadow-sm align-middle">
+        <thead class="table-primary">
+            <tr class="text-center">
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Precio (₡)</th>
+                <th>Creación</th>
+                <th>Actualización</th>
+                <th>Doctor</th>
+                <th>Estado</th>
+                <th>Paciente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Hora)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaCreacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FechaActualizacion)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DoctorIdCedulaNavigation.IdCedula)</td>
+                    <td>@Html.DisplayFor(modelItem => item.EstadoCitaIdEstadoCitaNavigation.IdEstadoCita)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PacienteIdCedulaNavigation.IdCedula)</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-action="Edit" asp-route-id="@item.IdCita" class="btn-rounded btn-editar btn-sm">
+                                <i class="bi bi-pencil-square"></i> Editar
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.IdCita" class="btn-rounded btn-detalles btn-sm">
+                                <i class="bi bi-eye-fill"></i> Detalles
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.IdCita" class="btn-rounded btn-eliminar btn-sm">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center mt-4">
+            <i class="bi bi-exclamation-circle"></i> No hay citas registradas actualmente.
+        </div>
+    }
+</div>

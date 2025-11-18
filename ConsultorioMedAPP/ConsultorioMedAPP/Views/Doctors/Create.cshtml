@@ -1,36 +1,68 @@
 ﻿@model ConsultorioMedAPP.Models.Doctor
 
-@{
-    ViewData["Title"] = "Create";
+@if (ViewData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @ViewData["Error"]
+    </div>
+}
+@if (TempData["MensajeExito"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["MensajeExito"]
+    </div>
 }
 
-<h1>Create</h1>
 
-<h4>Doctor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IdCedula" class="control-label"></label>
-                <select asp-for="IdCedula" class ="form-control" asp-items="ViewBag.IdCedula"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdEspecialidad" class="control-label"></label>
-                <select asp-for="IdEspecialidad" class ="form-control" asp-items="ViewBag.IdEspecialidad"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+@{
+    ViewData["Title"] = "Registrar Doctor";
+}
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<h2 class="text-center mb-4">Registrar nuevo doctor</h2>
+
+<div class="container mt-4">
+    <form asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label asp-for="IdCedula" class="form-label">Cédula y nombre</label>
+                <select asp-for="IdCedula" class="form-select" asp-items="ViewBag.IdCedula" required>
+                    <option value="">Seleccione una persona</option>
+                </select>
+                <span asp-validation-for="IdCedula" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="IdEspecialidad" class="form-label">Especialidad</label>
+                <select asp-for="IdEspecialidad" class="form-select" asp-items="ViewBag.IdEspecialidad" required>
+                    <option value="">Seleccione una especialidad</option>
+                </select>
+                <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-3">
+                <div class="form-check form-switch">
+                    <!-- ✅ Campo visible -->
+                    <input type="checkbox" id="Activo" name="Activo" class="form-check-input" value="true" />
+                    <label class="form-check-label" for="Activo">Activo</label>
+
+                    <!-- ✅ Campo oculto para enviar false cuando no se marca -->
+                    <input type="hidden" name="Activo" value="false" />
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }

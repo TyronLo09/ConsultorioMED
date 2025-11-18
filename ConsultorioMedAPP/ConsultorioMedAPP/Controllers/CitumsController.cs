@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http; // necesario para IFormCollection
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -21,27 +21,30 @@ namespace ConsultorioMedAPP.Controllers
         // GET: Citums
         public async Task<IActionResult> Index()
         {
-            var consultorioMedDBContext = _context.Cita.Include(c => c.DoctorIdCedulaNavigation).Include(c => c.EstadoCitaIdEstadoCitaNavigation).Include(c => c.PacienteIdCedulaNavigation);
-            return View(await consultorioMedDBContext.ToListAsync());
+            var citas = _context.Cita
+                .Include(c => c.DoctorIdCedulaNavigation)
+                    .ThenInclude(d => d.IdCedulaNavigation)
+                .Include(c => c.EstadoCitaIdEstadoCitaNavigation)
+                .Include(c => c.PacienteIdCedulaNavigation)
+                    .ThenInclude(p => p.IdCedulaNavigation);
+
+            return View(await citas.ToListAsync());
         }
 
         // GET: Citums/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var citum = await _context.Cita
                 .Include(c => c.DoctorIdCedulaNavigation)
+                    .ThenInclude(d => d.IdCedulaNavigation)
                 .Include(c => c.EstadoCitaIdEstadoCitaNavigation)
                 .Include(c => c.PacienteIdCedulaNavigation)
+                    .ThenInclude(p => p.IdCedulaNavigation)
                 .FirstOrDefaultAsync(m => m.IdCita == id);
-            if (citum == null)
-            {
-                return NotFound();
-            }
+
+            if (citum == null) return NotFound();
 
             return View(citum);
         }
@@ -49,189 +52,165 @@ namespace ConsultorioMedAPP.Controllers
         // GET: Citums/Create
         public IActionResult Create()
         {
-            ViewData["DoctorIdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula");
-            ViewData["EstadoCitaIdEstadoCita"] = new SelectList(_context.EstadoCita, "IdEstadoCita", "IdEstadoCita");
-            ViewData["PacienteIdCedula"] = new SelectList(_context.Pacientes, "IdCedula", "IdCedula");
+            CargarSelectLists();
             return View();
         }
 
         // POST: Citums/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Citum citum)
+        public async Task<IActionResult> Create(IFormCollection form)
         {
+            Citum citum = new Citum();
+
             try
             {
-                // DEBUG: Verificar qué datos llegan
-                Console.WriteLine($"Datos recibidos - Paciente: {citum?.PacienteIdCedula}, Doctor: {citum?.DoctorIdCedula}, Estado: {citum?.EstadoCitaIdEstadoCita}");
-
-                if (citum == null)
+                // Parse IDs (validar antes)
+                if (!int.TryParse(form["PacienteIdCedula"], out var pacienteId))
                 {
-                    ViewData["Error"] = "El objeto cita está vacío";
+                    ModelState.AddModelError("PacienteIdCedula", "Seleccione un paciente válido.");
+                }
+                if (!int.TryParse(form["DoctorIdCedula"], out var doctorId))
+                {
+                    ModelState.AddModelError("DoctorIdCedula", "Seleccione un doctor válido.");
+                }
+                if (!int.TryParse(form["EstadoCitaIdEstadoCita"], out var estadoId))
+                {
+                    ModelState.AddModelError("EstadoCitaIdEstadoCita", "Seleccione un estado válido.");
+                }
+
+                // Fecha (DateOnly) y Hora (TimeOnly)
+                DateOnly fechaParsed = default;
+                TimeOnly horaParsed = default;
+                bool fechaOk = DateOnly.TryParse(form["Fecha"], out fechaParsed);
+                bool horaOk = TimeOnly.TryParse(form["Hora"], out horaParsed);
+
+                if (!fechaOk) ModelState.AddModelError("Fecha", "Fecha inválida.");
+                if (!horaOk) ModelState.AddModelError("Hora", "Hora inválida.");
+
+                // Precio opcional/required según tu lógica
+                decimal precioParsed = 0m;
+                if (!string.IsNullOrWhiteSpace(form["Precio"]) && !decimal.TryParse(form["Precio"], out precioParsed))
+                    ModelState.AddModelError("Precio", "Precio inválido.");
+
+                // Si hay errores de validación, recargar y devolver vista
+                if (!ModelState.IsValid)
+                {
                     CargarSelectLists();
                     return View(citum);
                 }
 
-                // Validar campos requeridos
-                if (citum.PacienteIdCedula == 0)
-                {
-                    ViewData["Error"] = "Debe seleccionar un paciente";
-                    CargarSelectLists(citum);
-                    return View(citum);
-                }
-
-                if (citum.DoctorIdCedula == 0)
-                {
-                    ViewData["Error"] = "Debe seleccionar un doctor";
-                    CargarSelectLists(citum);
-                    return View(citum);
-                }
-
-                if (citum.EstadoCitaIdEstadoCita == 0)
-                {
-                    ViewData["Error"] = "Debe seleccionar un estado de cita";
-                    CargarSelectLists(citum);
-                    return View(citum);
-                }
-
-                // Asignar fechas automáticamente
+                // Asignar valores al modelo
+                citum.PacienteIdCedula = pacienteId;
+                citum.DoctorIdCedula = doctorId;
+                citum.EstadoCitaIdEstadoCita = estadoId;
+                citum.Fecha = fechaParsed;
+                citum.Hora = horaParsed;
+                citum.Precio = precioParsed;
                 citum.FechaCreacion = DateTime.Now;
                 citum.FechaActualizacion = DateTime.Now;
 
-                Console.WriteLine($"Intentando crear cita: Paciente={citum.PacienteIdCedula}, Doctor={citum.DoctorIdCedula}");
+                _context.Cita.Add(citum);
+                await _context.SaveChangesAsync();
 
-                _context.Add(citum);
-                int resultado = await _context.SaveChangesAsync();
-
-                Console.WriteLine($"Resultado SaveChanges: {resultado}");
-
-                if (resultado > 0)
-                {
-                    TempData["Success"] = "Cita creada exitosamente";
-                    return RedirectToAction(nameof(Index));
-                }
-                else
-                {
-                    ViewData["Error"] = "No se pudo guardar la cita en la base de datos";
-                    CargarSelectLists(citum);
-                    return View(citum);
-                }
+                TempData["Success"] = "Cita creada correctamente.";
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                // Capturar TODOS los errores
-                string errorCompleto = ex.Message;
-                if (ex.InnerException != null)
-                    errorCompleto += $" - {ex.InnerException.Message}";
+                // Log completo (útil para ver inner exceptions)
+                Console.WriteLine("ERROR Create Citum: " + ex.ToString());
 
-                ViewData["Error"] = $"Error: {errorCompleto}";
-                Console.WriteLine($"ERROR COMPLETO: {errorCompleto}");
-
-                CargarSelectLists(citum);
+                // Mostrar mensaje amigable y recargar selects
+                ModelState.AddModelError(string.Empty, "Ocurrió un error al crear la cita. " + ex.Message);
+                CargarSelectLists();
                 return View(citum);
             }
-        }
-
-        // Método auxiliar para cargar los SelectList
-        private void CargarSelectLists(Citum? citum = null)
-        {
-            ViewData["DoctorIdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", citum?.DoctorIdCedula);
-            ViewData["EstadoCitaIdEstadoCita"] = new SelectList(_context.EstadoCita, "IdEstadoCita", "IdEstadoCita", citum?.EstadoCitaIdEstadoCita);
-            ViewData["PacienteIdCedula"] = new SelectList(_context.Pacientes, "IdCedula", "IdCedula", citum?.PacienteIdCedula);
         }
 
         // GET: Citums/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var citum = await _context.Cita.FindAsync(id);
-            if (citum == null)
-            {
-                return NotFound();
-            }
-            ViewData["DoctorIdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", citum.DoctorIdCedula);
-            ViewData["EstadoCitaIdEstadoCita"] = new SelectList(_context.EstadoCita, "IdEstadoCita", "IdEstadoCita", citum.EstadoCitaIdEstadoCita);
-            ViewData["PacienteIdCedula"] = new SelectList(_context.Pacientes, "IdCedula", "IdCedula", citum.PacienteIdCedula);
+            if (citum == null) return NotFound();
+
+            CargarSelectLists();
             return View(citum);
         }
 
         // POST: Citums/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Citum citum)
+        public async Task<IActionResult> Edit(int id, IFormCollection form)
         {
-            if (id != citum.IdCita)
-            {
-                return NotFound();
-            }
+            var citum = await _context.Cita.FindAsync(id);
+            if (citum == null) return NotFound();
 
             try
             {
-                var citaExistente = await _context.Cita.FindAsync(id);
-                if (citaExistente == null)
+                // Parse y validaciones similares al Create
+                if (!int.TryParse(form["PacienteIdCedula"], out var pacienteId))
+                    ModelState.AddModelError("PacienteIdCedula", "Seleccione un paciente válido.");
+                if (!int.TryParse(form["DoctorIdCedula"], out var doctorId))
+                    ModelState.AddModelError("DoctorIdCedula", "Seleccione un doctor válido.");
+                if (!int.TryParse(form["EstadoCitaIdEstadoCita"], out var estadoId))
+                    ModelState.AddModelError("EstadoCitaIdEstadoCita", "Seleccione un estado válido.");
+
+                if (!DateOnly.TryParse(form["Fecha"], out var fechaParsed))
+                    ModelState.AddModelError("Fecha", "Fecha inválida.");
+                if (!TimeOnly.TryParse(form["Hora"], out var horaParsed))
+                    ModelState.AddModelError("Hora", "Hora inválida.");
+
+                decimal precioParsed = 0m;
+                if (!string.IsNullOrWhiteSpace(form["Precio"]) && !decimal.TryParse(form["Precio"], out precioParsed))
+                    ModelState.AddModelError("Precio", "Precio inválido.");
+
+                if (!ModelState.IsValid)
                 {
-                    return NotFound();
+                    CargarSelectLists();
+                    return View(citum);
                 }
 
-                // Actualizar propiedades
-                citaExistente.PacienteIdCedula = citum.PacienteIdCedula;
-                citaExistente.DoctorIdCedula = citum.DoctorIdCedula;
-                citaExistente.Fecha = citum.Fecha;
-                citaExistente.Hora = citum.Hora;
-                citaExistente.EstadoCitaIdEstadoCita = citum.EstadoCitaIdEstadoCita;
-                citaExistente.Precio = citum.Precio;
-                citaExistente.FechaActualizacion = DateTime.Now;
+                // Asignar
+                citum.PacienteIdCedula = pacienteId;
+                citum.DoctorIdCedula = doctorId;
+                citum.EstadoCitaIdEstadoCita = estadoId;
+                citum.Fecha = fechaParsed;
+                citum.Hora = horaParsed;
+                citum.Precio = precioParsed;
+                citum.FechaActualizacion = DateTime.Now;
 
+                _context.Cita.Update(citum);
                 await _context.SaveChangesAsync();
+
+                TempData["Success"] = "Cita actualizada correctamente.";
                 return RedirectToAction(nameof(Index));
-            }
-            catch (DbUpdateConcurrencyException ex)
-            {
-                if (!_context.Cita.Any(e => e.IdCita == citum.IdCita))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    ViewData["Error"] = "Error de concurrencia: " + ex.Message;
-                }
             }
             catch (Exception ex)
             {
-                ViewData["Error"] = "Error al actualizar: " + ex.Message;
+                Console.WriteLine("ERROR Edit Citum: " + ex.ToString());
+                ModelState.AddModelError(string.Empty, "Ocurrió un error al actualizar la cita. " + ex.Message);
+                CargarSelectLists();
+                return View(citum);
             }
-
-            ViewData["DoctorIdCedula"] = new SelectList(_context.Doctors, "IdCedula", "IdCedula", citum.DoctorIdCedula);
-            ViewData["EstadoCitaIdEstadoCita"] = new SelectList(_context.EstadoCita, "IdEstadoCita", "IdEstadoCita", citum.EstadoCitaIdEstadoCita);
-            ViewData["PacienteIdCedula"] = new SelectList(_context.Pacientes, "IdCedula", "IdCedula", citum.PacienteIdCedula);
-            return View(citum);
         }
 
         // GET: Citums/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var citum = await _context.Cita
                 .Include(c => c.DoctorIdCedulaNavigation)
+                    .ThenInclude(d => d.IdCedulaNavigation)
                 .Include(c => c.EstadoCitaIdEstadoCitaNavigation)
                 .Include(c => c.PacienteIdCedulaNavigation)
+                    .ThenInclude(p => p.IdCedulaNavigation)
                 .FirstOrDefaultAsync(m => m.IdCita == id);
-            if (citum == null)
-            {
-                return NotFound();
-            }
+
+            if (citum == null) return NotFound();
 
             return View(citum);
         }
@@ -245,15 +224,56 @@ namespace ConsultorioMedAPP.Controllers
             if (citum != null)
             {
                 _context.Cita.Remove(citum);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
+            TempData["Success"] = "Cita eliminada.";
             return RedirectToAction(nameof(Index));
         }
 
         private bool CitumExists(int id)
         {
             return _context.Cita.Any(e => e.IdCita == id);
+        }
+
+        // Cargar selects con nombres (usando navigation Persona)
+        private void CargarSelectLists()
+        {
+            // Pacientes
+            ViewData["PacienteIdCedula"] = new SelectList(
+                _context.Pacientes
+                    .Include(p => p.IdCedulaNavigation)
+                    .Select(p => new
+                    {
+                        Id = p.IdCedula,
+                        NombreCompleto = p.IdCedulaNavigation.Nombre + " " + p.IdCedulaNavigation.Apellido1
+                    })
+                    .ToList(),
+                "Id",
+                "NombreCompleto"
+            );
+
+            // Doctores
+            ViewData["DoctorIdCedula"] = new SelectList(
+                _context.Doctors
+                    .Include(d => d.IdCedulaNavigation)
+                    .Select(d => new
+                    {
+                        Id = d.IdCedula,
+                        NombreCompleto = "Dr. " + d.IdCedulaNavigation.Nombre + " " + d.IdCedulaNavigation.Apellido1
+                    })
+                    .ToList(),
+                "Id",
+                "NombreCompleto"
+            );
+
+            // Estados de cita
+            ViewData["EstadoCitaIdEstadoCita"] = new SelectList(
+                _context.EstadoCita
+                    .Select(e => new { e.IdEstadoCita, e.Descripcion })
+                    .ToList(),
+                "IdEstadoCita",
+                "Descripcion"
+            );
         }
     }
 }

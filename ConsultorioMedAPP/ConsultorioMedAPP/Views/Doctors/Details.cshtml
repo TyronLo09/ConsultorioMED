@@ -1,36 +1,50 @@
 ﻿@model ConsultorioMedAPP.Models.Doctor
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Doctor";
 }
 
-<h1>Details</h1>
+<div class="card shadow-lg border-0 rounded-4 mt-4">
+    <div class="card-header text-white text-center" style="background-color: #20c997;">
+        <h3 class="mb-0">Detalles del Doctor</h3>
+    </div>
 
-<div>
-    <h4>Doctor</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Activo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCedulaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCedulaNavigation.IdCedula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdEspecialidadNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdEspecialidadNavigation.IdEspecialidad)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdCedula">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div class="card-body">
+
+        <dl class="row mb-4">
+            <dt class="col-sm-3 fw-semibold text-end">Estado:</dt>
+            <dd class="col-sm-9">
+                @if (Model.Activo == true)
+                {
+                    <span class="badge bg-success px-3 py-2 shadow-sm">Activo</span>
+                }
+                else if (Model.Activo == false)
+                {
+                    <span class="badge bg-danger px-3 py-2 shadow-sm">Inactivo</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary px-3 py-2 shadow-sm">No especificado</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3 fw-semibold text-end">Cédula:</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.IdCedulaNavigation.IdCedula)</dd>
+
+            <dt class="col-sm-3 fw-semibold text-end">Especialidad:</dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.IdEspecialidadNavigation.Descripcion)
+
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-end mt-4">
+            <a asp-action="Index" class="btn btn-secondary me-2 rounded-3 px-4">
+                <i class="bi bi-arrow-left"></i> Volver
+            </a>
+            <a asp-action="Edit" asp-route-id="@Model?.IdCedula" class="btn btn-primary rounded-3 px-4">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+        </div>
+    </div>
 </div>
