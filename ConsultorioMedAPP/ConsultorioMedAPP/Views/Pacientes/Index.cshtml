@@ -1,53 +1,97 @@
-﻿@model IEnumerable<ConsultorioMedAPP.Models.Paciente>
-
-@{
-    ViewData["Title"] = "Index";
+﻿@{
+    ViewData["Title"] = "Lista de Pacientes";
+    var busquedaSel = ViewData["BusquedaSel"] as string;
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Lista de Pacientes</h1>
+
+@* MENSAJES DE ÉXITO Y ERROR *@
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>¡Éxito!</strong> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>¡Error!</strong> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Crear Nuevo Paciente</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FechaRegistro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdCedulaNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SeguroPacienteIdSeguroNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCedulaNavigation.IdCedula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SeguroPacienteIdSeguroNavigation.IdSeguro)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCedula">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCedula">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCedula">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<form method="get" asp-action="Index" class="row g-3 mb-4 align-items-end">
+    <div class="col-md-5">
+        <label for="busqueda" class="form-label">Buscar Paciente (Cédula o Nombre)</label>
+        <input type="text" id="busqueda" name="busqueda" class="form-control"
+               value="@busquedaSel" placeholder="Ingrese Cédula o Nombre" />
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Buscar</button>
+    </div>
+    <div class="col-md-2">
+        <a asp-action="Index" class="btn btn-secondary w-100">Restablecer</a>
+    </div>
+</form>
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Cédula</th>
+                <th>Nombre Completo</th>
+                <th>Tipo de Seguro</th>
+                <th>Porcentaje (%)</th>
+                <th>Enfermedad (Tipo)</th>
+                <th>¿Es Crónico?</th>
+                <th>Descripción Antecedentes</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Pacientes != null)
+            {
+                @foreach (var item in (dynamic)ViewBag.Pacientes)
+                {
+                    <tr>
+                        <td>@item.Cedula</td>
+                        <td>@item.Nombre @item.Apellido1 @item.Apellido2</td>
+                        <td>@item.TipoSeguro</td>
+                        <td>@item.PorcentajeSeguro</td>
+                        <td>@item.TipoEnfermedadDescripcion</td>
+                        <td>@item.EsCronico</td>
+                        <td>
+                            <div style="max-height: 50px; overflow-y: auto; border: 1px solid #ccc; padding: 5px;">
+                                @item.AntecedentesDescripcion
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge @(item.Estado ? "badge-success" : "badge-danger") text-black" style="color: black !important;">
+                                @(item.Estado ? "Activo" : "Inactivo")
+                            </span>
+                        </td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-action="Edit" asp-route-id="@item.Cedula" class="btn btn-primary btn-sm">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Cedula" class="btn btn-info btn-sm">Detalles</a>
+                                <a asp-action="Delete" asp-route-id="@item.Cedula" class="btn btn-danger btn-sm">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9" class="text-center">No hay pacientes registrados o la conexión a la base de datos falló.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

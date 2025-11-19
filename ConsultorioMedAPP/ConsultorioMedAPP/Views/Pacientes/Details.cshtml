@@ -1,42 +1,87 @@
 ﻿@model ConsultorioMedAPP.Models.Paciente
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles del Paciente";
+
+    // Accedemos al antecedente pasado por el controlador
+
+    var antecedente = ViewData["Antecedente"] as ConsultorioMedAPP.Models.AntecedentesMedico;
 }
 
-<h1>Details</h1>
+<h2 class="text-center mb-4">Detalles del Paciente: @Model.IdCedulaNavigation.Nombre @Model.IdCedulaNavigation.Apellido1</h2>
+<hr />
 
-<div>
-    <h4>Paciente</h4>
-    <hr />
+<div class="container mt-4">
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaRegistro)
+
+        <dt class="col-sm-3 text-info">INFORMACIÓN DE LA PERSONA</dt>
+        <dd class="col-sm-9"><hr style="border-top: 1px solid #17a2b8;" /></dd>
+
+        <dt class="col-sm-3">Cédula</dt>
+        <dd class="col-sm-9">@Model.IdCedula</dd>
+
+        <dt class="col-sm-3">Nombre Completo</dt>
+        <dd class="col-sm-9">@Model.IdCedulaNavigation.Nombre @Model.IdCedulaNavigation.Apellido1 @Model.IdCedulaNavigation.Apellido2</dd>
+
+        <dt class="col-sm-3">Fecha de Nacimiento</dt>
+        <dd class="col-sm-9">@Model.IdCedulaNavigation.FechaNacimiento.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-3 text-success mt-3">INFORMACIÓN DEL PACIENTE</dt>
+        <dd class="col-sm-9 mt-3"><hr style="border-top: 1px solid #28a745;" /></dd>
+
+        <dt class="col-sm-3">Fecha de Registro</dt>
+        <dd class="col-sm-9">@Model.FechaRegistro?.ToString("yyyy-MM-dd HH:mm")</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9 **text-black**">
+            @(Model.Estado.GetValueOrDefault() ? "Sí" : "No")
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCedulaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCedulaNavigation.IdCedula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SeguroPacienteIdSeguroNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SeguroPacienteIdSeguroNavigation.IdSeguro)
-        </dd>
+
+        <dt class="col-sm-3 text-warning mt-3">INFORMACIÓN DEL SEGURO</dt>
+        <dd class="col-sm-9 mt-3"><hr style="border-top: 1px solid #ffc107;" /></dd>
+
+        @if (Model.SeguroPacienteIdSeguroNavigation != null)
+
+        {
+            <dt class="col-sm-3">Tipo de Seguro</dt>
+            <dd class="col-sm-9">@Model.SeguroPacienteIdSeguroNavigation.IdTipoSeguroNavigation.Descripcion</dd>
+
+            <dt class="col-sm-3">ID de Seguro</dt>
+            <dd class="col-sm-9">@Model.SeguroPacienteIdSeguroNavigation.IdSeguro</dd>
+        }
+
+        else
+
+        {
+            <dd class="col-sm-12">No tiene seguro asociado.</dd>
+        }
+
+        <dt class="col-sm-3 text-danger mt-3">ANTECEDENTES MÉDICOS</dt>
+        <dd class="col-sm-9 mt-3"><hr style="border-top: 1px solid #dc3545;" /></dd>
+
+        @if (antecedente != null)
+
+        {
+            <dt class="col-sm-3">Tipo de Enfermedad</dt>
+            <dd class="col-sm-9">@antecedente.IdTipoEnfermedadNavigation.Descripcion</dd>
+
+            <dt class="col-sm-3">Es Crónica</dt>
+            <dd class="col-sm-9">@(antecedente.Cronico.GetValueOrDefault() ? "Sí" : "No")</dd>
+
+            <dt class="col-sm-3">Descripción</dt>
+            <dd class="col-sm-9">@antecedente.Descripcion</dd>
+        }
+
+        else
+
+        {
+            <dd class="col-sm-12">No hay antecedentes médicos registrados.</dd>
+        }
+
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdCedula">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+    <div class="mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.IdCedula" class="btn btn-primary">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Volver a la lista</a>
+    </div>
 </div>

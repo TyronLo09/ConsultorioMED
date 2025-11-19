@@ -1,36 +1,30 @@
 ﻿@model ConsultorioMedAPP.Models.TipoSeguro
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles de Tipo de Seguro";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
-    <h4>TipoSeguro</h4>
+    <h4>Tipo de Seguro</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Porcentaje)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Porcentaje)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Activo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Activo)
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Descripcion)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Descripcion)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Porcentaje)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Porcentaje)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Activo)</dt>
+        <dd class="col-sm-9">
+            @(Model.Activo == true ? "Sí" : "No")
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdTipoSeguro">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.IdTipoSeguro" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
 </div>

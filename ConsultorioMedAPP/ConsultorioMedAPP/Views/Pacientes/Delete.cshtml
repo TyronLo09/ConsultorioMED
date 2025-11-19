@@ -1,45 +1,40 @@
 ﻿@model ConsultorioMedAPP.Models.Paciente
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Eliminar Paciente";
 }
 
-<h1>Delete</h1>
+<h2 class="text-center mb-4 text-danger">Eliminar Paciente</h2>
+<h4 class="text-center">¿Está seguro de que desea eliminar el registro del paciente?</h4>
+<hr />
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Paciente</h4>
-    <hr />
+<div class="container mt-4">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FechaRegistro)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FechaRegistro)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCedulaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCedulaNavigation.IdCedula)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SeguroPacienteIdSeguroNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SeguroPacienteIdSeguroNavigation.IdSeguro)
+
+        <dt class="col-sm-3">Cédula</dt>
+        <dd class="col-sm-9">@Model.IdCedula</dd>
+
+        <dt class="col-sm-3">Nombre Completo</dt>
+        <dd class="col-sm-9">@Model.IdCedulaNavigation.Nombre @Model.IdCedulaNavigation.Apellido1 @Model.IdCedulaNavigation.Apellido2</dd>
+
+        <dt class="col-sm-3">Tipo de Seguro</dt>
+        <dd class="col-sm-9">@Model.SeguroPacienteIdSeguroNavigation?.IdTipoSeguroNavigation?.Descripcion</dd>
+
+        <dt class="col-sm-3">Fecha de Registro</dt>
+        <dd class="col-sm-9">@Model.FechaRegistro?.ToString("yyyy-MM-dd HH:mm")</dd>
+
+        <dt class="col-sm-3">Estado</dt>
+        <dd class="col-sm-9">
+
+            @(Model.Estado.GetValueOrDefault() ? "Sí" : "No")
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="IdCedula" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Confirmar Eliminación" class="btn btn-danger mt-3" />
+        <a asp-action="Index" class="btn btn-secondary mt-3">Cancelar</a>
     </form>
 </div>

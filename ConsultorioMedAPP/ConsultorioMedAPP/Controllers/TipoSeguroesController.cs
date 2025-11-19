@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConsultorioMedAPP.Models;
 
@@ -27,18 +25,9 @@ namespace ConsultorioMedAPP.Controllers
         // GET: TipoSeguroes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tipoSeguro = await _context.TipoSeguros
-                .FirstOrDefaultAsync(m => m.IdTipoSeguro == id);
-            if (tipoSeguro == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null) return NotFound();
+            var tipoSeguro = await _context.TipoSeguros.FirstOrDefaultAsync(m => m.IdTipoSeguro == id);
+            if (tipoSeguro == null) return NotFound();
             return View(tipoSeguro);
         }
 
@@ -49,14 +38,13 @@ namespace ConsultorioMedAPP.Controllers
         }
 
         // POST: TipoSeguroes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdTipoSeguro,Descripcion,Porcentaje,Activo")] TipoSeguro tipoSeguro)
         {
             if (ModelState.IsValid)
             {
+                tipoSeguro.Activo = true;
                 _context.Add(tipoSeguro);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -67,30 +55,18 @@ namespace ConsultorioMedAPP.Controllers
         // GET: TipoSeguroes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null) return NotFound();
             var tipoSeguro = await _context.TipoSeguros.FindAsync(id);
-            if (tipoSeguro == null)
-            {
-                return NotFound();
-            }
+            if (tipoSeguro == null) return NotFound();
             return View(tipoSeguro);
         }
 
         // POST: TipoSeguroes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdTipoSeguro,Descripcion,Porcentaje,Activo")] TipoSeguro tipoSeguro)
         {
-            if (id != tipoSeguro.IdTipoSeguro)
-            {
-                return NotFound();
-            }
+            if (id != tipoSeguro.IdTipoSeguro) return NotFound();
 
             if (ModelState.IsValid)
             {
@@ -101,14 +77,13 @@ namespace ConsultorioMedAPP.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TipoSeguroExists(tipoSeguro.IdTipoSeguro))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!TipoSeguroExists(tipoSeguro.IdTipoSeguro)) return NotFound();
+                    else throw;
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error al actualizar: {ex.InnerException?.Message ?? ex.Message}");
+                    return View(tipoSeguro);
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -118,33 +93,38 @@ namespace ConsultorioMedAPP.Controllers
         // GET: TipoSeguroes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var tipoSeguro = await _context.TipoSeguros
-                .FirstOrDefaultAsync(m => m.IdTipoSeguro == id);
-            if (tipoSeguro == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null) return NotFound();
+            var tipoSeguro = await _context.TipoSeguros.FirstOrDefaultAsync(m => m.IdTipoSeguro == id);
+            if (tipoSeguro == null) return NotFound();
             return View(tipoSeguro);
         }
 
-        // POST: TipoSeguroes/Delete/5
+        // POST: TipoSeguroes/Delete/5 (El método se llama Delete, y la acción es "Delete")
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tipoSeguro = await _context.TipoSeguros.FindAsync(id);
+
             if (tipoSeguro != null)
             {
-                _context.TipoSeguros.Remove(tipoSeguro);
+                try
+                {
+                    _context.TipoSeguros.Remove(tipoSeguro);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateException) // Maneja el error de restricción de clave foránea
+                {
+                    ModelState.AddModelError("", $"No se puede eliminar el Tipo de Seguro porque está siendo referenciado por otros registros (ej. Seguros).");
+                    return View(tipoSeguro);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error inesperado al eliminar: {ex.InnerException?.Message ?? ex.Message}");
+                    return View(tipoSeguro);
+                }
             }
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

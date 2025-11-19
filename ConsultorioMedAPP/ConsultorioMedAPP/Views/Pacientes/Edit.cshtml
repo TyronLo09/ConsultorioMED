@@ -1,44 +1,101 @@
 ﻿@model ConsultorioMedAPP.Models.Paciente
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Paciente";
+
+    var persona = ViewData["Persona"] as ConsultorioMedAPP.Models.Persona;
+
+    var antecedente = ViewData["Antecedente"] as ConsultorioMedAPP.Models.AntecedentesMedico;
+
+    var idSeguro = (int?)ViewData["SeguroId"];
+
+
+
+    // DEFINICIÓN DE VARIABLE PARA ELIMINAR EL ERROR DEL EDITOR
+
+    bool isCronico = antecedente?.Cronico.GetValueOrDefault() ?? false;
 }
 
-<h1>Edit</h1>
-
-<h4>Paciente</h4>
+<h2 class="text-center mb-4">Editar Paciente: @persona.Nombre @persona.Apellido1</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdCedula" />
-            <div class="form-group">
-                <label asp-for="SeguroPacienteIdSeguro" class="control-label"></label>
-                <select asp-for="SeguroPacienteIdSeguro" class="form-control" asp-items="ViewBag.SeguroPacienteIdSeguro"></select>
-                <span asp-validation-for="SeguroPacienteIdSeguro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaRegistro" class="control-label"></label>
-                <input asp-for="FechaRegistro" class="form-control" />
-                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="container mt-4">
+    <form asp-action="Edit" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="IdCedula" />
+        <input type="hidden" name="IdSeguro" value="@idSeguro" />
+
+        <h4 class="mt-4">Datos del Paciente</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Cédula</label>
+                <input type="text" value="@Model.IdCedula" class="form-control" disabled />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Estado" class="form-label">Estado del Paciente</label>
+                <select asp-for="Estado" class="form-select">
+                    <option value="true">Activo</option>
+                    <option value="false">Inactivo</option>
+                </select>
+            </div>
+        </div>
+
+        <h4 class="mt-4">Información del Seguro</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <label class="form-label">Tipo de Seguro</label>
+                <select name="IdTipoSeguro" class="form-select" asp-items="ViewBag.IdTipoSeguro" required>
+                    <option value="">-- Seleccione Tipo de Seguro --</option>
+                </select>
+            </div>
+        </div>
+
+        <h4 class="mt-4">Antecedentes Médicos</h4>
+        <hr />
+        @if (antecedente != null)
+
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Tipo de Enfermedad</label>
+                    <select name="IdTipoEnfermedad" class="form-select" asp-items="ViewBag.IdTipoEnfermedad" required>
+                        <option value="">-- Seleccione Tipo de Enfermedad --</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">¿Es Crónica?</label>
+                    <select name="Cronico" class="form-select" required>
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12">
+                    <label class="form-label">Descripción de Antecedentes</label>
+                    <textarea name="DescripcionAntecedente" class="form-control" rows="3" required>@antecedente.Descripcion</textarea>
+                </div>
+            </div>
+        }
+
+        else
+
+        {
+            <p class="text-danger">No se encontraron antecedentes médicos para editar.</p>
+        }
+
+        <div class="mt-4">
+            <input type="submit" value="Guardar Cambios" class="btn btn-success" />
+            <a asp-action="Index" class="btn btn-secondary">Cancelar y Volver</a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @await Html.PartialAsync("_ValidationScriptsPartial")
 }
