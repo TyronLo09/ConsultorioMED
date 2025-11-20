@@ -855,3 +855,28 @@ D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\Consu
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\ConsultorioMedAPP.genruntimeconfig.cache
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\ref\ConsultorioMedAPP.dll
 D:\Downloads\PROYECTO TYRON CONSULTORION MEDICO\Repositorio\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\ClosedXML.Parser.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\DocumentFormat.OpenXml.Framework.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\EPPlus.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.barcodes.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.bouncy-castle-connector.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.forms.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.io.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.kernel.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.layout.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.pdfa.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.pdfua.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.sign.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.styledxmlparser.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.svg.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.commons.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\RBush.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\itext.bouncy-castle-adapter.dll
+C:\Users\Tryro\Documents\ConsultorioMED\ConsultorioMedAPP\ConsultorioMedAPP\bin\Debug\net8.0\System.Xml.XPath.XmlDocument.dll

@@ -5,6 +5,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConsultorioMedAPP.Models;
+using System.Collections.Generic;
+using System.IO;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
 
 namespace ConsultorioMedAPP.Controllers
 {
@@ -15,6 +25,8 @@ namespace ConsultorioMedAPP.Controllers
         public PacientesController(ConsultorioMedDBContext context)
         {
             _context = context;
+           
+
         }
 
         // --- INDEX ---
@@ -71,6 +83,209 @@ namespace ConsultorioMedAPP.Controllers
 
             ViewBag.Pacientes = vistaPacientes;
             return View();
+        }
+
+        // --- EXPORTAR A PDF (CÓDIGO COMPLETO CORREGIDO) ---
+        public async Task<IActionResult> ExportarPdf(string busqueda)
+        {
+            var pacientes = await ObtenerPacientesParaExportar(busqueda);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var writer = new PdfWriter(memoryStream);
+                var pdf = new PdfDocument(writer);
+                var document = new Document(pdf);
+
+                // 1. CREAMOS LA FUENTE NEGRITA
+                PdfFont fuenteNegrita = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+
+                // --- TÍTULO ---
+                document.Add(new Paragraph("REPORTE DE PACIENTES")
+                    .SetFont(fuenteNegrita) // Usamos .SetFont
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(16));
+
+                document.Add(new Paragraph($"Generado el: {DateTime.Now:dd/MM/yyyy HH:mm}"));
+
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    document.Add(new Paragraph($"Búsqueda: {busqueda}"));
+                }
+
+                document.Add(new Paragraph("\n"));
+
+                // --- TABLA ---
+                var table = new Table(8); // 8 columnas
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                // --- ENCABEZADOS ---
+                string[] headers = { "Cédula", "Nombre", "Apellido1", "Apellido2", "Estado", "Tipo Seguro", "% Seguro", "Enfermedad" };
+
+                foreach (var header in headers)
+                {
+                    Cell celda = new Cell();
+
+                    // Aplicamos la fuente al párrafo, no a la celda
+                    Paragraph p = new Paragraph(header).SetFont(fuenteNegrita);
+
+                    celda.Add(p);
+                    celda.SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY);
+                    celda.SetTextAlignment(TextAlignment.CENTER);
+
+                    table.AddHeaderCell(celda);
+                }
+
+                // --- DATOS (Esto faltaba en tu recorte) ---
+                foreach (var paciente in pacientes)
+                {
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.Cedula.ToString())));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.Nombre)));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.Apellido1)));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.Apellido2)));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.Estado ? "Activo" : "Inactivo")));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.TipoSeguro)));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.PorcentajeSeguro)));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente.TipoEnfermedadDescripcion)));
+                }
+
+                document.Add(table);
+
+                // Pie de página
+                document.Add(new Paragraph($"\nTotal de pacientes: {pacientes.Count}")
+                    .SetTextAlignment(TextAlignment.RIGHT));
+
+                document.Close(); // ¡Importante cerrar el documento!
+
+                var bytes = memoryStream.ToArray();
+                return File(bytes, "application/pdf", $"Pacientes_{DateTime.Now:yyyyMMddHHmmss}.pdf");
+            }
+        }
+
+        // --- EXPORTAR A EXCEL ---
+        // --- EXPORTAR A EXCEL ---
+        public async Task<IActionResult> ExportarExcel(string busqueda)
+        {
+            // 1. AGREGA ESTA LÍNEA AQUÍ PARA SOLUCIONAR EL ERROR
+            
+
+            var pacientes = await ObtenerPacientesParaExportar(busqueda);
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Pacientes");
+
+                // Título
+                worksheet.Cells[1, 1].Value = "REPORTE DE PACIENTES";
+                worksheet.Cells[1, 1, 1, 9].Merge = true;
+                worksheet.Cells[1, 1].Style.Font.Size = 16;
+                worksheet.Cells[1, 1].Style.Font.Bold = true;
+                worksheet.Cells[1, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
+                // Información del reporte
+                worksheet.Cells[2, 1].Value = $"Generado el: {DateTime.Now:dd/MM/yyyy HH:mm}";
+                if (!string.IsNullOrEmpty(busqueda))
+                {
+                    worksheet.Cells[3, 1].Value = $"Búsqueda: {busqueda}";
+                }
+
+                // Encabezados
+                int row = 5;
+                string[] headers = { "Cédula", "Nombre", "Apellido1", "Apellido2", "Estado", "Tipo Seguro", "% Seguro", "Enfermedad", "Crónico", "Antecedentes" };
+                
+                for (int i = 0; i < headers.Length; i++)
+                {
+                    worksheet.Cells[row, i + 1].Value = headers[i];
+                    worksheet.Cells[row, i + 1].Style.Font.Bold = true;
+                    worksheet.Cells[row, i + 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    worksheet.Cells[row, i + 1].Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                    worksheet.Cells[row, i + 1].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                }
+
+                // Datos
+                row++;
+                foreach (var paciente in pacientes)
+                {
+                    worksheet.Cells[row, 1].Value = paciente.Cedula;
+                    worksheet.Cells[row, 2].Value = paciente.Nombre;
+                    worksheet.Cells[row, 3].Value = paciente.Apellido1;
+                    worksheet.Cells[row, 4].Value = paciente.Apellido2;
+                    worksheet.Cells[row, 5].Value = paciente.Estado ? "Activo" : "Inactivo";
+                    worksheet.Cells[row, 6].Value = paciente.TipoSeguro;
+                    worksheet.Cells[row, 7].Value = paciente.PorcentajeSeguro;
+                    worksheet.Cells[row, 8].Value = paciente.TipoEnfermedadDescripcion;
+                    worksheet.Cells[row, 9].Value = paciente.EsCronico;
+                    worksheet.Cells[row, 10].Value = paciente.AntecedentesDescripcion;
+
+                    // Aplicar bordes a todas las celdas de la fila
+                    for (int col = 1; col <= 10; col++)
+                    {
+                        worksheet.Cells[row, col].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    }
+
+                    row++;
+                }
+
+                // Autoajustar columnas
+                worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+                // Total de pacientes
+                worksheet.Cells[row + 1, 1].Value = $"Total de pacientes: {pacientes.Count}";
+                worksheet.Cells[row + 1, 1].Style.Font.Bold = true;
+
+                var bytes = package.GetAsByteArray();
+                return File(bytes, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", 
+                    $"Pacientes_{DateTime.Now:yyyyMMddHHmmss}.xlsx");
+            }
+        }
+
+        // --- MÉTODO PRIVADO PARA OBTENER DATOS DE EXPORTACIÓN ---
+        private async Task<List<dynamic>> ObtenerPacientesParaExportar(string busqueda)
+        {
+            var query = _context.Pacientes
+                .Include(p => p.IdCedulaNavigation)
+                .Include(p => p.SeguroPacienteIdSeguroNavigation)
+                    .ThenInclude(s => s.IdTipoSeguroNavigation)
+                .Include(p => p.AntecedentesMedicos)
+                    .ThenInclude(a => a.IdTipoEnfermedadNavigation)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                string busquedaNormalizada = busqueda.ToLower();
+                query = query.Where(p =>
+                    p.IdCedula.ToString().Contains(busquedaNormalizada) ||
+                    p.IdCedulaNavigation.Nombre.ToLower().Contains(busquedaNormalizada) ||
+                    p.IdCedulaNavigation.Apellido1.ToLower().Contains(busquedaNormalizada) ||
+                    p.IdCedulaNavigation.Apellido2.ToLower().Contains(busquedaNormalizada)
+                );
+            }
+
+            var pacientes = await query.OrderBy(p => p.IdCedula).ToListAsync();
+
+            return pacientes.Select(p =>
+            {
+                var persona = p.IdCedulaNavigation;
+                var seguro = p.SeguroPacienteIdSeguroNavigation;
+                var antecedente = p.AntecedentesMedicos.FirstOrDefault();
+
+                string tipoSeguroDescripcion = seguro?.IdTipoSeguroNavigation?.Descripcion ?? "Sin Seguro";
+                decimal? porcentaje = seguro?.IdTipoSeguroNavigation?.Porcentaje;
+
+                return new
+                {
+                    Cedula = persona.IdCedula,
+                    Nombre = persona.Nombre,
+                    Apellido1 = persona.Apellido1,
+                    Apellido2 = persona.Apellido2,
+                    Estado = p.Estado,
+                    TipoSeguro = tipoSeguroDescripcion,
+                    PorcentajeSeguro = porcentaje.HasValue ? $"{porcentaje.Value}%" : "0%",
+                    TipoEnfermedadDescripcion = antecedente?.IdTipoEnfermedadNavigation?.Descripcion ?? "Sin registro",
+                    EsCronico = (antecedente?.Cronico ?? false) ? "Sí" : "No",
+                    AntecedentesDescripcion = antecedente?.Descripcion ?? "Sin antecedentes registrados",
+                    IdSeguro = seguro?.IdSeguro
+                };
+            }).ToList<dynamic>();
         }
 
         // --- DETAILS ---

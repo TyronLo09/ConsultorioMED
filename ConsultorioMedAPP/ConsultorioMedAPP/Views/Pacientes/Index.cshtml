@@ -25,18 +25,39 @@
     <a asp-action="Create" class="btn btn-success">Crear Nuevo Paciente</a>
 </p>
 
+@* FORMULARIO DE BÚSQUEDA Y BOTONES DE EXPORTACIÓN *@
 <form method="get" asp-action="Index" class="row g-3 mb-4 align-items-end">
+
+    @* Campo de búsqueda (5 columnas) *@
     <div class="col-md-5">
         <label for="busqueda" class="form-label">Buscar Paciente (Cédula o Nombre)</label>
         <input type="text" id="busqueda" name="busqueda" class="form-control"
                value="@busquedaSel" placeholder="Ingrese Cédula o Nombre" />
     </div>
+
+    @* Botón Buscar (2 columnas) *@
     <div class="col-md-2">
         <button type="submit" class="btn btn-primary w-100">Buscar</button>
     </div>
+
+    @* Botón Restablecer (2 columnas) *@
     <div class="col-md-2">
         <a asp-action="Index" class="btn btn-secondary w-100">Restablecer</a>
     </div>
+
+    @* --- AQUÍ AGREGUÉ LOS BOTONES DE EXPORTAR (3 columnas restantes) --- *@
+    <div class="col-md-3">
+        <label class="form-label d-block">&nbsp;</label> @* Label vacío para alinear visualmente *@
+        <div class="btn-group w-100" role="group">
+            <a asp-action="ExportarExcel" asp-route-busqueda="@busquedaSel" class="btn btn-success" title="Descargar Excel">
+                Excel
+            </a>
+            <a asp-action="ExportarPdf" asp-route-busqueda="@busquedaSel" class="btn btn-danger" title="Descargar PDF">
+                PDF
+            </a>
+        </div>
+    </div>
+
 </form>
 
 <div class="table-responsive">

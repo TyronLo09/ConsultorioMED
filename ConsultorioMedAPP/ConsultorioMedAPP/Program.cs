@@ -3,10 +3,13 @@ using ConsultorioMedAPP.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 var conexionTyron = builder.Configuration.GetConnectionString("conexionTyron");
 var conexionKendall = builder.Configuration.GetConnectionString("conexionKendall");
+builder.Services.AddControllersWithViews();
+
 
 string connectionString;
 
