@@ -7,6 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConsultorioMedAPP.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using ClosedXML.Excel;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
 
 namespace ConsultorioMedAPP.Controllers
 {
@@ -17,6 +27,115 @@ namespace ConsultorioMedAPP.Controllers
         public PersonasController(ConsultorioMedDBContext context)
         {
             _context = context;
+        }
+        public async Task<IActionResult> ExportExcel()
+        {
+            var listado = await _context.Personas
+                .Include(p => p.IdGeneroNavigation)
+                .ToListAsync();
+
+            using (var workbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                var ws = workbook.Worksheets.Add("Personas");
+
+                // Encabezados
+                ws.Cell(1, 1).Value = "Cédula";
+                ws.Cell(1, 2).Value = "Nombre";
+                ws.Cell(1, 3).Value = "Primer Apellido";
+                ws.Cell(1, 4).Value = "Segundo Apellido";
+                ws.Cell(1, 5).Value = "Género";
+                ws.Cell(1, 6).Value = "Activo";
+
+                int row = 2;
+                foreach (var p in listado)
+                {
+                    // Usa tu helper FormatCedula si quieres formato 1-1836-0977
+                    string cedulaFormateada = FormatCedula(p.IdCedula);
+
+                    ws.Cell(row, 1).Value = cedulaFormateada;
+                    ws.Cell(row, 2).Value = p.Nombre;
+                    ws.Cell(row, 3).Value = p.Apellido1;
+                    ws.Cell(row, 4).Value = p.Apellido2;
+                    ws.Cell(row, 5).Value = p.IdGeneroNavigation?.Descripcion ?? "";
+                    ws.Cell(row, 6).Value = (p.Activo == true) ? "Sí" : "No";
+
+                    row++;
+                }
+
+                // Autoajustar columnas
+                ws.Columns().AdjustToContents();
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(
+                        content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        $"Personas_{DateTime.Now:yyyyMMddHHmmss}.xlsx"
+                    );
+                }
+            }
+        }
+
+        public async Task<IActionResult> ExportPDF()
+        {
+            var listado = await _context.Personas
+                .Include(p => p.IdGeneroNavigation)
+                .ToListAsync();
+
+            using (var ms = new MemoryStream())
+            {
+                var writer = new PdfWriter(ms);
+                var pdf = new PdfDocument(writer);
+                var document = new Document(pdf);
+
+                // Fuente negrita para el título (evita usar SetBold() directo)
+                PdfFont fuenteNegrita = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+
+                document.Add(new Paragraph("LISTADO DE PERSONAS")
+                    .SetFont(fuenteNegrita)
+                    .SetFontSize(16)
+                    .SetTextAlignment(TextAlignment.CENTER));
+
+                document.Add(new Paragraph($"Generado el: {DateTime.Now:dd/MM/yyyy HH:mm}"));
+
+                document.Add(new Paragraph("\n"));
+
+                var table = new iText.Layout.Element.Table(6).UseAllAvailableWidth();
+
+
+                // Encabezados
+                string[] headers = { "Cédula", "Nombre", "Primer Apellido", "Segundo Apellido", "Género", "Activo" };
+                foreach (var h in headers)
+                {
+                    var cell = new Cell().Add(new Paragraph(h).SetFont(fuenteNegrita));
+                    cell.SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY);
+                    cell.SetTextAlignment(TextAlignment.CENTER);
+                    table.AddHeaderCell(cell);
+                }
+
+                foreach (var p in listado)
+                {
+                    string cedulaFormateada = FormatCedula(p.IdCedula);
+                    table.AddCell(new Cell().Add(new Paragraph(cedulaFormateada)));
+                    table.AddCell(new Cell().Add(new Paragraph(p.Nombre ?? "")));
+                    table.AddCell(new Cell().Add(new Paragraph(p.Apellido1 ?? "")));
+                    table.AddCell(new Cell().Add(new Paragraph(p.Apellido2 ?? "")));
+                    table.AddCell(new Cell().Add(new Paragraph(p.IdGeneroNavigation?.Descripcion ?? "")));
+                    table.AddCell(new Cell().Add(new Paragraph((p.Activo == true) ? "Sí" : "No")));
+                }
+
+                document.Add(table);
+
+                document.Add(new Paragraph($"\nTotal de personas: {listado.Count}")
+                    .SetTextAlignment(TextAlignment.RIGHT));
+
+                document.Close();
+
+                var bytes = ms.ToArray();
+                return File(bytes, "application/pdf", $"Personas_{DateTime.Now:yyyyMMddHHmmss}.pdf");
+            }
         }
 
         // Helper: formatea cédula 9 dígitos => 1-1836-0977

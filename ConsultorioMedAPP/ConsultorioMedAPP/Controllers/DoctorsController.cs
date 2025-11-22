@@ -44,6 +44,89 @@ namespace ConsultorioMedAPP.Controllers
 
             return View(doctor);
         }
+        public async Task<IActionResult> ExportExcel()
+        {
+            var listado = await _context.Doctors
+                .Include(d => d.IdCedulaNavigation)
+                .Include(d => d.IdEspecialidadNavigation)
+                .ToListAsync();
+
+            using (var workbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                var ws = workbook.Worksheets.Add("Doctores");
+
+                ws.Cell(1, 1).Value = "Cédula";
+                ws.Cell(1, 2).Value = "Nombre Completo";
+                ws.Cell(1, 3).Value = "Especialidad";
+                ws.Cell(1, 4).Value = "Activo";
+
+                int row = 2;
+                foreach (var d in listado)
+                {
+                    ws.Cell(row, 1).Value = d.IdCedula;
+                    ws.Cell(row, 2).Value = d.IdCedulaNavigation.Nombre + " " + d.IdCedulaNavigation.Apellido1 + " " + d.IdCedulaNavigation.Apellido2;
+                    ws.Cell(row, 3).Value = d.IdEspecialidadNavigation.Descripcion;
+                    ws.Cell(row, 4).Value = d.Activo == true ? "Sí" : "No";
+
+                    row++;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content,
+                        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        "Doctores.xlsx");
+                }
+            }
+        }
+        public async Task<IActionResult> ExportPDF()
+        {
+            var listado = await _context.Doctors
+                .Include(d => d.IdCedulaNavigation)
+                .Include(d => d.IdEspecialidadNavigation)
+                .ToListAsync();
+
+            using (var ms = new MemoryStream())
+            {
+                var writer = new iText.Kernel.Pdf.PdfWriter(ms);
+                var pdf = new iText.Kernel.Pdf.PdfDocument(writer);
+                var document = new iText.Layout.Document(pdf);
+
+                document.Add(new iText.Layout.Element.Paragraph("Lista de Doctores")
+                .SetFontSize(16)
+                .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+);
+
+
+                var table = new iText.Layout.Element.Table(4).UseAllAvailableWidth();
+
+                table.AddHeaderCell("Cédula");
+                table.AddHeaderCell("Nombre Completo");
+                table.AddHeaderCell("Especialidad");
+                table.AddHeaderCell("Activo");
+
+                foreach (var d in listado)
+                {
+                    table.AddCell(d.IdCedula.ToString());
+                    table.AddCell(d.IdCedulaNavigation.Nombre + " " +
+                                  d.IdCedulaNavigation.Apellido1 + " " +
+                                  d.IdCedulaNavigation.Apellido2);
+                    table.AddCell(d.IdEspecialidadNavigation.Descripcion);
+                    table.AddCell(d.Activo == true ? "Sí" : "No");
+
+                }
+
+                document.Add(table);
+                document.Close();
+
+                return File(ms.ToArray(),
+                    "application/pdf",
+                    "Doctores.pdf");
+            }
+        }
+
 
 
         // GET: Doctors/Create

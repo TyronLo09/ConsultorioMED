@@ -1,11 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http; // necesario para IFormCollection
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConsultorioMedAPP.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using ClosedXML.Excel;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+
+
 
 namespace ConsultorioMedAPP.Controllers
 {
@@ -17,6 +32,149 @@ namespace ConsultorioMedAPP.Controllers
         {
             _context = context;
         }
+        public IActionResult ExportExcel()
+        {
+            var citas = _context.Cita
+                .Include(c => c.DoctorIdCedulaNavigation)
+                    .ThenInclude(d => d.IdCedulaNavigation)
+                .Include(c => c.EstadoCitaIdEstadoCitaNavigation)
+                .Include(c => c.PacienteIdCedulaNavigation)
+                    .ThenInclude(p => p.IdCedulaNavigation)
+                .ToList();
+
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Citas");
+
+                // Encabezados
+                worksheet.Cell(1, 1).Value = "ID";
+                worksheet.Cell(1, 2).Value = "Paciente";
+                worksheet.Cell(1, 3).Value = "Doctor";
+                worksheet.Cell(1, 4).Value = "Estado";
+                worksheet.Cell(1, 5).Value = "Fecha";
+                worksheet.Cell(1, 6).Value = "Hora";
+                worksheet.Cell(1, 7).Value = "Precio";
+
+                int row = 2;
+
+                foreach (var c in citas)
+                {
+                    worksheet.Cell(row, 1).Value = c.IdCita;
+                    worksheet.Cell(row, 2).Value = c.PacienteIdCedulaNavigation?.IdCedulaNavigation?.Nombre;
+                    worksheet.Cell(row, 3).Value = c.DoctorIdCedulaNavigation?.IdCedulaNavigation?.Nombre;
+                    worksheet.Cell(row, 4).Value = c.EstadoCitaIdEstadoCitaNavigation?.Descripcion;
+                    worksheet.Cell(row, 5).Value = c.Fecha.ToString("dd/MM/yyyy");
+                    worksheet.Cell(row, 6).Value = c.Hora.ToString("HH:mm");
+                    worksheet.Cell(row, 7).Value = c.Precio;
+                    row++;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    return File(
+                       stream.ToArray(),
+                       "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                       $"ListadoCitas_{DateTime.Now:ddMMyyyy}.xlsx"
+                    );
+                }
+            }
+        }
+        public IActionResult ExportPDF()
+        {
+            var citas = _context.Cita
+                .Include(c => c.DoctorIdCedulaNavigation)
+                    .ThenInclude(d => d.IdCedulaNavigation)
+                .Include(c => c.EstadoCitaIdEstadoCitaNavigation)
+                .Include(c => c.PacienteIdCedulaNavigation)
+                    .ThenInclude(p => p.IdCedulaNavigation)
+                .ToList();
+
+            using (var stream = new MemoryStream())
+            {
+                PdfWriter writer = new PdfWriter(stream);
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf);
+
+                var fontNormal = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+                var fontBold = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+
+                // TÍTULO
+                document.Add(
+                    new Paragraph("LISTADO DE CITAS")
+                    .SetFont(fontBold)
+                    .SetFontSize(14)
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                );
+
+                // FECHA
+                document.Add(
+                    new Paragraph($"Generado el: {DateTime.Now:dd/MM/yyyy HH:mm}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT)
+                    .SetFontSize(9)
+                );
+
+                document.Add(new Paragraph("\n"));
+
+                var table = new iText.Layout.Element.Table(6).UseAllAvailableWidth();
+                table.SetTextAlignment(TextAlignment.CENTER);
+
+
+
+                // ENCABEZADOS
+                string[] headers =
+                {
+            "ID", "Paciente", "Doctor", "Estado", "Fecha", "Hora", "Precio"
+        };
+
+                foreach (var h in headers)
+                {
+                    table.AddHeaderCell(
+                        new Cell()
+                        .Add(new Paragraph(h).SetFont(fontBold))
+                        .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
+                        .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                    );
+                }
+
+                // FILAS
+                foreach (var c in citas)
+                {
+                    string paciente = $"{c.PacienteIdCedulaNavigation?.IdCedulaNavigation?.Nombre} " +
+                                      $"{c.PacienteIdCedulaNavigation?.IdCedulaNavigation?.Apellido1}";
+
+                    string doctor = $"{c.DoctorIdCedulaNavigation?.IdCedulaNavigation?.Nombre} " +
+                                    $"{c.DoctorIdCedulaNavigation?.IdCedulaNavigation?.Apellido1}";
+
+                    table.AddCell(new Cell().Add(new Paragraph(c.IdCita.ToString())));
+                    table.AddCell(new Cell().Add(new Paragraph(paciente)));
+                    table.AddCell(new Cell().Add(new Paragraph(doctor)));
+                    table.AddCell(new Cell().Add(new Paragraph(c.EstadoCitaIdEstadoCitaNavigation?.Descripcion ?? "")));
+                    table.AddCell(new Cell().Add(new Paragraph(c.Fecha.ToString("dd/MM/yyyy"))));
+                    table.AddCell(new Cell().Add(new Paragraph(c.Hora.ToString("HH:mm"))));
+                    table.AddCell(new Cell().Add(new Paragraph(c.Precio.ToString("N2"))));
+                }
+
+                document.Add(table);
+
+                // TOTAL AL FINAL
+                document.Add(
+                    new Paragraph($"Total de citas: {citas.Count}")
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.RIGHT)
+                    .SetFont(fontBold)
+                );
+
+                document.Close();
+
+                return File(
+                    stream.ToArray(),
+                    "application/pdf",
+                    $"ListadoCitas_{DateTime.Now:ddMMyyyy}.pdf"
+                );
+            }
+        }
+
+
 
         // GET: Citums
         public async Task<IActionResult> Index()

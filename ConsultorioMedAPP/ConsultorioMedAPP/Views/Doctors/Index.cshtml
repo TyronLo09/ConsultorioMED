@@ -10,12 +10,31 @@
     </div>
 
     <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <!-- ENCABEZADO Y BOTONES -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
             <p class="mb-0 text-muted">Gestione aquí los doctores registrados en el sistema.</p>
-            <a asp-action="Create" class="btn btn-success rounded-3 shadow-sm">
-                <i class="bi bi-plus-circle"></i> Crear Nuevo Doctor
-            </a>
+
+            <div class="d-flex gap-2">
+
+                <!-- Botón Crear -->
+                <a asp-action="Create" class="btn btn-success rounded-3 shadow-sm">
+                    <i class="bi bi-plus-circle"></i> Crear Nuevo Doctor
+                </a>
+
+                <!-- Exportar Excel -->
+                <a asp-action="ExportExcel" class="btn btn-outline-success rounded-3 shadow-sm">
+                    <i class="bi bi-file-earmark-spreadsheet"></i> Excel
+                </a>
+
+                <!-- Exportar PDF -->
+                <a asp-action="ExportPDF" class="btn btn-outline-danger rounded-3 shadow-sm">
+                    <i class="bi bi-file-earmark-pdf"></i> PDF
+                </a>
+
+            </div>
         </div>
+
 
         <table class="table table-hover align-middle text-center shadow-sm rounded-3">
             <thead class="text-white" style="background-color: #20c997;">
